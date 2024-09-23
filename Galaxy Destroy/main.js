@@ -22,6 +22,19 @@ class NaveEspacial{
 		this.model = null;
 		this.load(this);
 	}
+
+	move(){
+		if(this.model){
+			this.model.position.Z += 0.01;
+
+			if(this.model.position.z >= 5){
+				this.model.position.z = -20.0;
+				let r = Math.random();
+				this.model.position.x = -15.0 * r + 15.0 * (1.0 - r);
+				this.model.position.y = -15.0 * r + 15.0 * (1.0 - r);
+			}
+		}
+	}
 }
 camera.position.z = 5;
 
