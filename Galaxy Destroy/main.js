@@ -15,6 +15,14 @@ scene.add(cube);*/
 const light = new THREE.Ambientligth( 0xffffff);
 scene.add(light);
 
+let model = null;
+
+class NaveEspacial{
+	constructor (){
+		this.model = null;
+		this.load(this);
+	}
+}
 camera.position.z = 5;
 
 function animate() {
