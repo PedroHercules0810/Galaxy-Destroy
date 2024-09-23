@@ -36,6 +36,7 @@ class NaveEspacial{
 		}
 	}
 }
+
 camera.position.z = 5;
 
 function animate() {
