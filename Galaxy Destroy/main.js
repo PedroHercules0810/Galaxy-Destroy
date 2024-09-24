@@ -12,8 +12,8 @@ const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);*/
 
-const light = new THREE.Ambientligth( 0xffffff);
-scene.add(light);
+// const light = new THREE.Ambientligth( 0xffffff);
+// scene.add(light);
 
 let model = null;
 
