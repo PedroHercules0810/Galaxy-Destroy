@@ -39,7 +39,8 @@ class NaveEspacial{
 			function ( glb ) {
 				
 				scene.add( glb.scene );
-                object.model = glb.scene.children[0];
+                this.model = glb.scene;
+				// this.scene.add = (this.model)
 
 				// scene.add( gltf.scene );
 				// object.model = gltf.scene.children[0];
@@ -70,10 +71,12 @@ class NaveEspacial{
 }
 }
 
-let nave = new NaveEspacial;
+let nave = new NaveEspacial();
 
+let light = new THREE.AmbientLight(0xffffff, 10);
+scene.add(light);
 
-camera.position.z = 5;
+camera.position.z = 10;
 
 function animate() {
 
@@ -87,5 +90,7 @@ function animate() {
 
 	nave.move();
 
-renderer.setAnimationLoop(animate);
+	renderer.setAnimationLoop(animate);
 }
+
+animate();
