@@ -17,7 +17,16 @@ class NaveEspacial{
 	}
 
 	move(){
+		if(this.model){
+			this.model.position.z += 0.01;
 
+			if(this.model.position.z >= 5){
+				this.model.position.z = -20.0;
+				let r = Math.random();
+				this.model.position.x = -15.0 *  r + 15.0 * (1.0 - r);
+				this.model.position.y = -15.0 *  r + 15.0 * (1.0 - r);
+			}
+		}
 	}
 	load(object){
 
@@ -27,19 +36,19 @@ class NaveEspacial{
 			// resource URL
 			'models/Spaceship.glb',
 			// called when the resource is loaded
-			function ( gltf ) {
+			function ( glb ) {
 				
-				this.model = gltf.scene;
-                scene.add(this.model);
+				scene.add( glb.scene );
+                object.model = glb.scene.children[0];
 
 				// scene.add( gltf.scene );
 				// object.model = gltf.scene.children[0];
 		
-				gltf.animations; // Array<THREE.AnimationClip>
-				gltf.scene; // THREE.Group
-				gltf.scenes; // Array<THREE.Group>
-				gltf.cameras; // Array<THREE.Camera>
-				gltf.asset; // Object
+				glb.animations; // Array<THREE.AnimationClip>
+				glb.scene; // THREE.Group
+				glb.scenes; // Array<THREE.Group>
+				glb.cameras; // Array<THREE.Camera>
+				glb.asset; // Object
 		
 			},
 			// called while loading is progressing
@@ -52,20 +61,31 @@ class NaveEspacial{
 			function ( error ) {
 		
 				console.log( 'An error happened' );
+				console.log(error);
+				
 		
 			}
+			
 		);
 }
 }
 
 let nave = new NaveEspacial;
-scene.add(nave)
+
 
 camera.position.z = 5;
 
 function animate() {
-	nave.load();
+
 	renderer.render(scene, camera);
+
+	if (nave.model != null){
+		asteroid.model.rotation.x += 0.05;
+		asteroid.model.rotation.y += 0.03;
+		asteroid.model.rotation.z -= 0.1;
+	}
+
+	nave.move();
 
 renderer.setAnimationLoop(animate);
 }
