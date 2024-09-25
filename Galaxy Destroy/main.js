@@ -82,7 +82,7 @@ class NaveEspacial{
 
 let nave = new NaveEspacial();
 
-let light = new THREE.AmbientLight(0xff00ff);
+let light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
 
 camera.position.z = 10;
