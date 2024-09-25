@@ -1,4 +1,4 @@
-# Pilares_Criacao_CG
+# Galaxy Destroy
 Repositório para o projeto de computação gráfica, onde criaremos um jogo, com o objetivo de destruir planetas e assim o sistema solar.
 
 Galaxy Destroy é o nome do jogo.
