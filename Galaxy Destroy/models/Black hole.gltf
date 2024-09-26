@@ -1,0 +1,174 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 4716,
+            "type": "VEC3",
+            "max": [
+                15.900247573852539,
+                39.107643127441406,
+                14.448854446411133
+            ],
+            "min": [
+                -15.010047912597656,
+                0.0,
+                -14.764444351196289
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 4716,
+            "type": "VEC3",
+            "max": [
+                0.9989994168281555,
+                0.9993515014648438,
+                0.9996401071548462
+            ],
+            "min": [
+                -0.9993179440498352,
+                -0.9993588924407959,
+                -0.9996400475502014
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 4716,
+            "type": "VEC2",
+            "max": [
+                0.9891660213470459,
+                0.9939669966697693
+            ],
+            "min": [
+                0.011655000038444996,
+                0.005057990550994873
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 4716,
+            "type": "SCALAR",
+            "max": [
+                4715
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 169776,
+            "uri": "Black hole_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 56592,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 56592,
+            "byteLength": 56592,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 113184,
+            "byteLength": 37728,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 150912,
+            "byteLength": 18864,
+            "target": 34963
+        }
+    ],
+    "images": [
+        {
+            "uri": "black_hole.png"
+        }
+    ],
+    "materials": [
+        {
+            "name": "BlackHole:Blackhole_mat",
+            "pbrMetallicRoughness": {
+                "baseColorTexture": {
+                    "index": 0
+                },
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Black hole",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "BlackHole_mesh",
+            "mesh": 0,
+            "extras": {
+                "name": "BlackHole_mesh"
+            }
+        }
+    ],
+    "samplers": [
+        {
+            "magFilter": 9729,
+            "minFilter": 9986
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "textures": [
+        {
+            "source": 0,
+            "sampler": 0
+        }
+    ],
+    "scene": 0
+}
