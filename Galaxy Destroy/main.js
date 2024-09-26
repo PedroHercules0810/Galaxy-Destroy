@@ -83,6 +83,7 @@ class NaveEspacial {
 class Sun {
 	constructor() {
 		this.model = null;
+		this.light = null
 		this.load(this);
 	}
 
@@ -114,6 +115,10 @@ class Sun {
 
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
+
+				const light = new THREE.PointLight(0xff0000, 1, 100);
+				object.light = light;
+				object.model.add(light);
 
 				// model = glb.scene.children[0];
 				// console.log(model);
@@ -162,12 +167,15 @@ class Planet {
 
 	load() {
 		const loader = new GLTFLoader();
+		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc }); // Adjust color as needed
 
 		loader.load(
 			this.modelPath,
 			(gltf) => {
 				this.model = gltf.scene.children[0];
 				scene.add(this.model);
+
+				this.model.material = material;
 			},
 			(xhr) => {
 				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
@@ -206,6 +214,10 @@ let plutao = new Planet('models/Pluto.gltf', 10, 0.04);
 
 let light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
+
+// const light = new THREE.PointLight( 0xff0000, 1, 100 );
+// light.position.set( sol.model.position.x, sol.model.position.y , sol.model.position.z );
+// scene.add( light );
 
 const controls = new OrbitControls( camera, renderer.domElement );
 
