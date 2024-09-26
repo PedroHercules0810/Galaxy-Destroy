@@ -271,7 +271,7 @@ class blackHole {
 	move() {
 		if (this.model) {
 			
-			this.model.rotation.y += 0.01; // Rotate the Sun (optional)
+			this.model.rotation.y -= 0.01; // Rotate the Sun (optional)
 			this.model.scale.set(5,5,5)
 			this.model.position.z = -400
 			this.model.position.y = -100
