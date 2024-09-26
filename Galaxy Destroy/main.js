@@ -15,6 +15,10 @@ class NaveEspacial {
 	constructor() {
 		this.model = null;
 		this.load(this);
+		this.arrowUp = false;
+			this.arrowDown = false;
+			this.arrowLeft = false;
+			this.arrowRight = false;
 	}
 
 	load(object) {
@@ -67,7 +71,79 @@ class NaveEspacial {
 		if (this.model) {
 			this.model.position.z = 15;
 			this.model.scale.set(.1,.1,.1)
-		}
+
+
+			
+
+
+		// 	if (this.arrowUp) {
+		// 		this.model.position.y += 0.5;
+		// 		this.model.rotation.y += 0.5;
+		// 	}
+		// 	if (this.arrowDown) {
+		// 		this.model.rotation.y -= 0.5;
+		// 		this.model.position.y -= 0.5;
+		// 	}
+		// 	if (this.arrowRight) {
+		// 		this.model.position.x += 0.5;
+		// 		this.model.rotation.x += 0.5;
+		// 	}
+		// 	if (this.arrowLeft) {
+		// 		this.model.position.x -= 0.5;
+		// 		this.model.rotation.x -= 0.5;
+		// 	}
+		// }
+		// renderer.setAnimationLoop( animate );
+		
+		// document.addEventListener("keydown", onDocumenteKeyDown, false)
+		
+		// function onDocumenteKeyDown(event) {
+		// 	console.log(event.key);
+		// 	console.log(event.keyCode);
+		// 	switch(event.key){
+		// 		case "ArrowUp":
+		// 			this.arrowUp = true;
+		// 		break;
+		// 		case "ArrowDown":
+		// 			this.arrowDown = true;
+		// 		break;
+		// 		case "ArrowLeft":
+		// 			this.arrowLeft = true;
+		// 		break;
+		// 		case "ArrowRight":
+		// 			this.arrowRight = true;
+		// 		break;
+		// 		case " ":
+		// 			this.space = true;
+		// 		break;
+		// 	}
+		// }
+		
+		// document.addEventListener("keyup", onDocumenteKeyUp, false)
+		
+		// function onDocumenteKeyUp(event) {
+		// 	console.log(event.key);
+		// 	console.log(event.keyCode);
+		// 	switch(event.key){
+		// 		case "ArrowUp":
+		// 			this.arrowUp = false;
+		// 		break;
+		// 		case "ArrowDown":
+		// 			this.arrowDown = false;
+		// 		break;
+		// 		case "ArrowLeft":
+		// 			this.arrowLeft = false;
+		// 		break;
+		// 		case "ArrowRight":
+		// 			this.arrowRight = false;
+		// 		break;
+		// 		case " ":
+		// 			this.space = false;
+		// 		break;
+		// 	}
+		// }
+		// 
+	}
 	}
 }
 
