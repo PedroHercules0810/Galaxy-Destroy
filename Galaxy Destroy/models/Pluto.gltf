@@ -1,0 +1,138 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2068,
+            "type": "VEC3",
+            "max": [
+                0.05469179153442383,
+                0.05192255973815918,
+                0.0485234297811985
+            ],
+            "min": [
+                -0.05037153139710426,
+                -0.045960430055856705,
+                -0.048110008239746094
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2068,
+            "type": "VEC3",
+            "max": [
+                0.990096926689148,
+                0.997367262840271,
+                0.9952685236930847
+            ],
+            "min": [
+                -0.9982737898826599,
+                -0.9957557320594788,
+                -0.9969353079795837
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 2154,
+            "type": "SCALAR",
+            "max": [
+                2067
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 58248,
+            "uri": "Pluto_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 24816,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 24816,
+            "byteLength": 24816,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 49632,
+            "byteLength": 8616,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "mat22",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.3499999940395355,
+                    0.3499999940395355,
+                    0.3499999940395355,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 2,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Pluto",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Node",
+            "mesh": 0,
+            "extras": {
+                "name": "Node"
+            }
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

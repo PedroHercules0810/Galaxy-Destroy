@@ -1,0 +1,336 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1223,
+            "type": "VEC3",
+            "max": [
+                0.11941330134868622,
+                0.2440313994884491,
+                0.1158996969461441
+            ],
+            "min": [
+                -0.1092303991317749,
+                -0.20162920653820038,
+                -0.28236448764801025
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1223,
+            "type": "VEC3",
+            "max": [
+                0.9945129752159119,
+                0.9980431795120239,
+                1.0
+            ],
+            "min": [
+                -0.9976675510406494,
+                -0.9995989799499512,
+                -0.986639678478241
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 1284,
+            "type": "SCALAR",
+            "max": [
+                1222
+            ],
+            "min": [
+                0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 512,
+            "type": "VEC3",
+            "max": [
+                0.1923559010028839,
+                0.162082701921463,
+                0.18888379633426666
+            ],
+            "min": [
+                -0.14782699942588806,
+                -0.180684894323349,
+                -0.15085040032863617
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 512,
+            "type": "VEC3",
+            "max": [
+                0.9926455616950989,
+                0.9796262383460999,
+                0.9877396821975708
+            ],
+            "min": [
+                -0.9659473896026611,
+                -0.9767196774482727,
+                -0.9878976345062256
+            ]
+        },
+        {
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 564,
+            "type": "SCALAR",
+            "max": [
+                511
+            ],
+            "min": [
+                0
+            ]
+        },
+        {
+            "bufferView": 6,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2678,
+            "type": "VEC3",
+            "max": [
+                0.20153069496154785,
+                0.14087270200252533,
+                0.17079409956932068
+            ],
+            "min": [
+                -0.15047310292720795,
+                -0.16524480283260345,
+                -0.16433319449424744
+            ]
+        },
+        {
+            "bufferView": 7,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2678,
+            "type": "VEC3",
+            "max": [
+                0.9964258074760437,
+                0.9931831359863281,
+                0.9996907114982605
+            ],
+            "min": [
+                -0.9964752197265625,
+                -0.9926334023475647,
+                -0.9994257688522339
+            ]
+        },
+        {
+            "bufferView": 8,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 2724,
+            "type": "SCALAR",
+            "max": [
+                2677
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 124200,
+            "uri": "Earth and Moon_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 14676,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 14676,
+            "byteLength": 14676,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 29352,
+            "byteLength": 5136,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 34488,
+            "byteLength": 6144,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 40632,
+            "byteLength": 6144,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 46776,
+            "byteLength": 2256,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 49032,
+            "byteLength": 32136,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 81168,
+            "byteLength": 32136,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 113304,
+            "byteLength": 10896,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "mat15",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.6299999952316284,
+                    0.699999988079071,
+                    0.7200000286102295,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        },
+        {
+            "name": "mat4",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.0,
+                    0.5199999809265137,
+                    0.6600000262260437,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        },
+        {
+            "name": "mat9",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.27000001072883606,
+                    0.550000011920929,
+                    0.07000000029802322,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 2,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "meshes[1]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 1,
+                    "indices": 5,
+                    "attributes": {
+                        "POSITION": 3,
+                        "NORMAL": 4
+                    }
+                }
+            ]
+        },
+        {
+            "name": "meshes[2]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 2,
+                    "indices": 8,
+                    "attributes": {
+                        "POSITION": 6,
+                        "NORMAL": 7
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Earth and Moon",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Node",
+            "children": [
+                2,
+                3,
+                4
+            ],
+            "extras": {
+                "name": "Node"
+            }
+        },
+        {
+            "name": "Node-Mesh",
+            "mesh": 0
+        },
+        {
+            "name": "Node-Mesh_1",
+            "mesh": 1
+        },
+        {
+            "name": "Node-Mesh_2",
+            "mesh": 2
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

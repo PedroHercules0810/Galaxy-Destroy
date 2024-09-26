@@ -1,0 +1,240 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 667,
+            "type": "VEC3",
+            "max": [
+                0.7049252986907959,
+                0.49860671162605286,
+                0.6804410815238953
+            ],
+            "min": [
+                -0.650322675704956,
+                -0.5740941166877747,
+                -0.7487761974334717
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 667,
+            "type": "VEC3",
+            "max": [
+                0.9967448115348816,
+                0.9782663583755493,
+                0.9971840977668762
+            ],
+            "min": [
+                -0.9967448115348816,
+                -0.9929760694503784,
+                -0.9805392026901245
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 939,
+            "type": "SCALAR",
+            "max": [
+                666
+            ],
+            "min": [
+                0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1849,
+            "type": "VEC3",
+            "max": [
+                0.8409395217895508,
+                0.6141008734703064,
+                0.8217368125915527
+            ],
+            "min": [
+                -0.8152194023132324,
+                -0.6531919836997986,
+                -0.897172212600708
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1849,
+            "type": "VEC3",
+            "max": [
+                0.9982377290725708,
+                0.9970874786376953,
+                0.9807319045066833
+            ],
+            "min": [
+                -0.9982378482818604,
+                -0.9950757622718811,
+                -0.9880491495132446
+            ]
+        },
+        {
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 2583,
+            "type": "SCALAR",
+            "max": [
+                1848
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 74472,
+            "uri": "Saturn_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 8004,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 8004,
+            "byteLength": 8004,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 16008,
+            "byteLength": 3756,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 19764,
+            "byteLength": 22188,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 41952,
+            "byteLength": 22188,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 64140,
+            "byteLength": 10332,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "mat18",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    1.0,
+                    0.6100000143051147,
+                    0.25,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        },
+        {
+            "name": "mat19",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.7400000095367432,
+                    0.33000001311302185,
+                    0.05999999865889549,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 2,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "meshes[1]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 1,
+                    "indices": 5,
+                    "attributes": {
+                        "POSITION": 3,
+                        "NORMAL": 4
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Saturn",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Node",
+            "children": [
+                2,
+                3
+            ],
+            "extras": {
+                "name": "Node"
+            }
+        },
+        {
+            "name": "Node-Mesh",
+            "mesh": 0
+        },
+        {
+            "name": "Node-Mesh_1",
+            "mesh": 1
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

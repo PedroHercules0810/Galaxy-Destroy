@@ -1,0 +1,240 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1472,
+            "type": "VEC3",
+            "max": [
+                0.12374839931726456,
+                0.13057850301265717,
+                0.14463910460472107
+            ],
+            "min": [
+                -0.14561119675636292,
+                -0.13592779636383057,
+                -0.1335994005203247
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1472,
+            "type": "VEC3",
+            "max": [
+                0.996692955493927,
+                0.9937339425086975,
+                0.9885228276252747
+            ],
+            "min": [
+                -0.9918721914291382,
+                -0.9987325668334961,
+                -0.998884916305542
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 1536,
+            "type": "SCALAR",
+            "max": [
+                1471
+            ],
+            "min": [
+                0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1594,
+            "type": "VEC3",
+            "max": [
+                0.12341450154781342,
+                0.1339762955904007,
+                0.12364610284566879
+            ],
+            "min": [
+                -0.13646839559078217,
+                -0.13288550078868866,
+                -0.1347080022096634
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1594,
+            "type": "VEC3",
+            "max": [
+                0.9975406527519226,
+                0.997965931892395,
+                0.9975948333740234
+            ],
+            "min": [
+                -0.9951805472373962,
+                -0.99981290102005,
+                -0.997758686542511
+            ]
+        },
+        {
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 1620,
+            "type": "SCALAR",
+            "max": [
+                1593
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 86208,
+            "uri": "Mars_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 17664,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 17664,
+            "byteLength": 17664,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 35328,
+            "byteLength": 6144,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 41472,
+            "byteLength": 19128,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 60600,
+            "byteLength": 19128,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 79728,
+            "byteLength": 6480,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "mat14",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    1.0,
+                    0.09000000357627869,
+                    0.009999999776482582,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        },
+        {
+            "name": "mat8",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.9100000262260437,
+                    0.05000000074505806,
+                    0.029999999329447746,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 2,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1
+                    }
+                }
+            ]
+        },
+        {
+            "name": "meshes[1]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 1,
+                    "indices": 5,
+                    "attributes": {
+                        "POSITION": 3,
+                        "NORMAL": 4
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Mars",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Node",
+            "children": [
+                2,
+                3
+            ],
+            "extras": {
+                "name": "Node"
+            }
+        },
+        {
+            "name": "Node-Mesh",
+            "mesh": 0
+        },
+        {
+            "name": "Node-Mesh_1",
+            "mesh": 1
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

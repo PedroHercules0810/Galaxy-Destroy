@@ -1,0 +1,138 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1652,
+            "type": "VEC3",
+            "max": [
+                0.37236958742141724,
+                0.3548957109451294,
+                0.2673872113227844
+            ],
+            "min": [
+                -0.39648979902267456,
+                -0.35773441195487976,
+                -0.24123239517211914
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1652,
+            "type": "VEC3",
+            "max": [
+                0.9991695284843445,
+                0.9983793497085571,
+                0.9893075227737427
+            ],
+            "min": [
+                -0.9915046095848083,
+                -0.9983793497085571,
+                -0.9915288090705872
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 2256,
+            "type": "SCALAR",
+            "max": [
+                1651
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 48672,
+            "uri": "Uranus_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 19824,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 19824,
+            "byteLength": 19824,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 39648,
+            "byteLength": 9024,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "mat3",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.2199999988079071,
+                    0.7400000095367432,
+                    0.8299999833106995,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 2,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Uranus",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Node",
+            "mesh": 0,
+            "extras": {
+                "name": "Node"
+            }
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

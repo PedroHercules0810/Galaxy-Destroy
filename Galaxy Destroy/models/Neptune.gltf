@@ -1,0 +1,138 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 524,
+            "type": "VEC3",
+            "max": [
+                0.2508249878883362,
+                0.2520599067211151,
+                0.25737398862838745
+            ],
+            "min": [
+                -0.2508251965045929,
+                -0.2520596981048584,
+                -0.2573738098144531
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 524,
+            "type": "VEC3",
+            "max": [
+                0.9965872764587402,
+                0.9962285757064819,
+                0.9662914872169495
+            ],
+            "min": [
+                -0.9962667226791382,
+                -0.9985992908477783,
+                -0.9987457394599915
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 564,
+            "type": "SCALAR",
+            "max": [
+                523
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 14832,
+            "uri": "Neptune_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 6288,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 6288,
+            "byteLength": 6288,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 12576,
+            "byteLength": 2256,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "mat5",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.0,
+                    0.3400000035762787,
+                    0.7900000214576721,
+                    1.0
+                ],
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 2,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Neptune",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Node",
+            "mesh": 0,
+            "extras": {
+                "name": "Node"
+            }
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}
