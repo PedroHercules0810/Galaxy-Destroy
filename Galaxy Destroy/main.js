@@ -66,7 +66,7 @@ class NaveEspacial {
 	}
 	move() {
 		if (this.model) {
-			this.model.position.z = 15;
+			//this.model.position.z = 15;
 			this.model.scale.set(.1, .1, .1)
 
 
@@ -288,6 +288,8 @@ let arrowUp = false;
 let arrowDown = false;
 let arrowLeft = false;
 let arrowRight = false;
+let arrowShift = false;
+let arrowCtrl = false;
 
 function animate() {
 	renderer.render(scene, camera);
@@ -324,6 +326,12 @@ function animate() {
 			nave.model.position.x -= 0.05;
 
 		}
+		if (arrowShift) {
+			nave.model.position.z += 0.2;
+		}
+		if (arrowCtrl) {
+			nave.model.position.z -= 0.2;
+		}
 	}
 	renderer.setAnimationLoop( animate );
 
@@ -348,6 +356,12 @@ function animate() {
 			case " ":
 				space = true;
 			break;
+			case "Shift":
+				arrowShift = true;
+			break;
+			case "Control":
+				arrowCtrl = true;
+			break;
 		}
 	}
 
@@ -371,6 +385,12 @@ function animate() {
 			break;
 			case " ":
 				space = false;
+			break;
+			case "Shift":
+				arrowShift = false;
+			break;
+			case "Control":
+				arrowCtrl = false;
 			break;
 		}
 	
