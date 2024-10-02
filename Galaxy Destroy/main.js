@@ -66,7 +66,7 @@ class NaveEspacial {
 	}
 	move() {
 		if (this.model) {
-			//this.model.position.z = 15;
+			this.model.rotation.y = Math.PI;
 			this.model.scale.set(.1, .1, .1)
 
 
