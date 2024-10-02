@@ -68,12 +68,6 @@ class NaveEspacial {
 		if (this.model) {
 			this.model.rotation.y = Math.PI;
 			this.model.scale.set(.1, .1, .1)
-
-
-
-
-
-
 		}
 	}
 }
@@ -293,7 +287,6 @@ let arrowCtrl = false;
 
 function animate() {
 	renderer.render(scene, camera);
-	
 	buraco.move();
 	nave.move();
 	venus.move();
@@ -311,28 +304,33 @@ function animate() {
 	
 	controls.update();
 
-		if (arrowUp) {
-			nave.model.position.y += 0.05;
-		}
-		if (arrowDown) {
-
-			nave.model.position.y -= 0.05;
-		}
-		if (arrowRight) {
-			nave.model.position.x += 0.05;
-
-		}
-		if (arrowLeft) {
-			nave.model.position.x -= 0.05;
-
-		}
-		if (arrowShift) {
-			nave.model.position.z += 0.2;
-		}
-		if (arrowCtrl) {
-			nave.model.position.z -= 0.2;
-		}
+	if (arrowUp) {
+		nave.model.position.y += 0.05;
 	}
+	if (arrowDown) {
+
+		nave.model.position.y -= 0.05;
+	}
+	if (arrowRight) {
+		nave.model.position.x -= 0.05;
+
+	}
+	if (arrowLeft) {
+		nave.model.position.x += 0.05;
+
+	}
+	if (arrowShift) {
+		nave.model.position.z += 0.2;
+	}
+	if (arrowCtrl) {
+		nave.model.position.z -= 0.2;
+	}
+
+	camera.position.x = nave.model.position.x;
+	camera.position.y = nave.model.position.y;
+	camera.position.z = nave.model.position.z - 5;
+		
+}
 	renderer.setAnimationLoop( animate );
 
 	document.addEventListener("keydown", onDocumenteKeyDown, false)
@@ -367,33 +365,33 @@ function animate() {
 
 	document.addEventListener("keyup", onDocumenteKeyUp, false)
 
-	function onDocumenteKeyUp(event) {
-		console.log(event.key);
-		console.log(event.keyCode);
-		switch(event.key){
-			case "ArrowUp":
-				arrowUp = false;
-			break;
-			case "ArrowDown":
-				arrowDown = false;
-			break;
-			case "ArrowLeft":
-				arrowLeft = false;
-			break;
-			case "ArrowRight":
-				arrowRight = false;
-			break;
-			case " ":
-				space = false;
-			break;
-			case "Shift":
-				arrowShift = false;
-			break;
-			case "Control":
-				arrowCtrl = false;
-			break;
-		}
-	
+function onDocumenteKeyUp(event) {
+	console.log(event.key);
+	console.log(event.keyCode);
+	switch(event.key){
+		case "ArrowUp":
+			arrowUp = false;
+		break;
+		case "ArrowDown":
+			arrowDown = false;
+		break;
+		case "ArrowLeft":
+			arrowLeft = false;
+		break;
+		case "ArrowRight":
+			arrowRight = false;
+		break;
+		case " ":
+			space = false;
+		break;
+		case "Shift":
+			arrowShift = false;
+		break;
+		case "Control":
+			arrowCtrl = false;
+		break;
+	}
+
 	// 
 
 	// updatePlanetOrbit(venus);
@@ -405,8 +403,6 @@ function animate() {
 	//     nave.model.rotation.y += 0.02;
 
 	// }
-
-
 	renderer.setAnimationLoop(animate);
 }
 
