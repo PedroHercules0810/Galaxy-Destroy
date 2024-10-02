@@ -15,13 +15,13 @@ class NaveEspacial {
 	constructor() {
 		this.model = null;
 		this.load(this);
-
 	}
-
+	
 	load(object) {
-
+		
 		const loader = new GLTFLoader();
 
+		
 		loader.load(
 			// resource URL
 			'models/Spaceship.gltf',
@@ -66,16 +66,17 @@ class NaveEspacial {
 	}
 	move() {
 		if (this.model) {
-			this.model.rotation.y = Math.PI;
+			// this.model.rotation.y = Math.PI;
 			this.model.scale.set(.1, .1, .1)
 		}
 	}
 }
 
 class Sun {
-	constructor() {
+	constructor(vida) {
 		this.model = null;
 		this.light = null
+		this.vida = vida;
 		this.load(this);
 	}
 
@@ -133,7 +134,7 @@ class Sun {
 		if (this.model) {
 
 			this.model.rotation.y += 0.01; // Rotate the Sun (optional)
-			this.model.scale.set(5, 5, 5)
+			this.model.scale.set(50, 50, 50)
 			this.model.position.z = 0
 		}
 
@@ -206,12 +207,13 @@ class blackHole {
 }
 
 class Planet {
-	constructor(modelPath, orbitRadius, orbitSpeed) {
+	constructor(modelPath, orbitRadius, orbitSpeed, vida) {
 		this.model = null;
 		this.modelPath = modelPath;
 		this.orbitRadius = orbitRadius;
 		this.orbitSpeed = orbitSpeed;
 		this.angle = 0;
+		this.vida = vida;
 		this.load();
 	}
 
@@ -239,7 +241,7 @@ class Planet {
 
 	move() {
 		if (this.model) {
-			this.model.scale.set(3, 3, 3)
+			this.model.scale.set(30, 30, 30)
 			this.model.rotation.y += 0.02;
 
 			this.angle += this.orbitSpeed; // Update the planet's angle for orbiting
@@ -252,16 +254,16 @@ class Planet {
 }
 
 let nave = new NaveEspacial();
-let sol = new Sun();
-let venus = new Planet('models/Venus.gltf', 20, 0.01);
-let mercurio = new Planet('models/Mercury.gltf', 15, 0.02);
-let terra = new Planet('models/Earth and Moon.gltf', 22, 0.005);
-let marte = new Planet('models/Mars.gltf', 24, 0.006);
-let jupiter = new Planet('models/Jupiter.gltf', 30, 0.006);
-let saturno = new Planet('models/Saturn.gltf', 39, 0.002);
-let urano = new Planet('models/Uranus.gltf', 30, 0.004);
-let netuno = new Planet('models/Neptune.gltf', 40, 0.004);
-let plutao = new Planet('models/Pluto.gltf', 10, 0.04);
+let sol = new Sun(150);
+let venus = new Planet('models/Venus.gltf', 200, 0.001, 20);
+let mercurio = new Planet('models/Mercury.gltf', 150, 0.002, 20);
+let terra = new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20);
+let marte = new Planet('models/Mars.gltf', 240, 0.0006, 20);
+let jupiter = new Planet('models/Jupiter.gltf', 300, 0.0006, 20);
+let saturno = new Planet('models/Saturn.gltf', 390, 0.0002, 20);
+let urano = new Planet('models/Uranus.gltf', 300, 0.0004, 20);
+let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
+let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
 let buraco = new blackHole();
 
 let light = new THREE.AmbientLight(0xffffff);
@@ -271,9 +273,9 @@ scene.add(light);
 // light.position.set( 10, 10 , -400 );
 // scene.add( light );
 
-const controls = new OrbitControls(camera, renderer.domElement);
-camera.position.set( 0, 20, 50 );
-controls.update();
+// const controls = new OrbitControls(camera, renderer.domElement);
+// camera.position.set( 0, 20, 50 );
+// controls.update();
 // camera.rotation.x = 5.9;
 // camera.position.y = 5;
 
@@ -284,6 +286,11 @@ let arrowLeft = false;
 let arrowRight = false;
 let arrowShift = false;
 let arrowCtrl = false;
+
+if (nave.model) {
+	nave.rotation.y = Math.PI;
+	nave.position.set(0,0,30)
+}
 
 function animate() {
 	renderer.render(scene, camera);
@@ -302,7 +309,7 @@ function animate() {
 
 	
 	
-	controls.update();
+	// controls.update();
 
 	if (arrowUp) {
 		nave.model.position.y += 0.05;
@@ -312,23 +319,28 @@ function animate() {
 		nave.model.position.y -= 0.05;
 	}
 	if (arrowRight) {
-		nave.model.position.x -= 0.05;
-
-	}
-	if (arrowLeft) {
 		nave.model.position.x += 0.05;
 
 	}
-	if (arrowShift) {
-		nave.model.position.z += 0.2;
+	if (arrowLeft) {
+		nave.model.position.x -= 0.05;
+
 	}
-	if (arrowCtrl) {
+	if (arrowShift) {
 		nave.model.position.z -= 0.2;
 	}
+	if (arrowCtrl) {
+		nave.model.position.z += 0.2;
+	}
 
-	camera.position.x = nave.model.position.x;
-	camera.position.y = nave.model.position.y;
-	camera.position.z = nave.model.position.z - 5;
+	if (nave.model) {
+		
+		camera.position.set(nave.model.position.x, nave.model.position.y, nave.model.position.z+2)
+	}
+
+	// camera.position.x = nave.model.position.x;
+	// camera.position.y = nave.model.position.y;
+	// camera.position.z = nave.model.position.z - 5;
 		
 }
 	renderer.setAnimationLoop( animate );
