@@ -15,135 +15,66 @@ class NaveEspacial {
 	constructor() {
 		this.model = null;
 		this.load(this);
-		this.arrowUp = false;
-			this.arrowDown = false;
-			this.arrowLeft = false;
-			this.arrowRight = false;
+
 	}
 
 	load(object) {
-		
+
 		const loader = new GLTFLoader();
-		
+
 		loader.load(
 			// resource URL
 			'models/Spaceship.gltf',
 			// called when the resource is loaded
 			function (gltf) {
-				
-				
+
+
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
-				
+
 				// model = glb.scene.children[0];
 				// console.log(model);
 				// scene.add( model );
 				// model = glb.scene.children[12];
 				// this.scene.add = (this.model)
-				
+
 				// scene.add( gltf.scene );
-				
+
 				gltf.animations; // Array<THREE.AnimationClip>
 				gltf.scene; // THREE.Group
 				gltf.scenes; // Array<THREE.Group>
 				gltf.cameras; // Array<THREE.Camera>
 				gltf.asset; // Object
-				
+
 			},
 			// called while loading is progressing
 			function (xhr) {
-				
+
 				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-				
+
 			},
 			// called when loading has errors
 			function (error) {
-				
+
 				console.log('An error happened');
 				console.log(error);
-				
-				
+
+
 			}
-			
+
 		);
 	}
 	move() {
 		if (this.model) {
 			this.model.position.z = 15;
-			this.model.scale.set(.1,.1,.1)
+			this.model.scale.set(.1, .1, .1)
 
 
-			
 
 
-		// 	if (this.arrowUp) {
-		// 		this.model.position.y += 0.5;
-		// 		this.model.rotation.y += 0.5;
-		// 	}
-		// 	if (this.arrowDown) {
-		// 		this.model.rotation.y -= 0.5;
-		// 		this.model.position.y -= 0.5;
-		// 	}
-		// 	if (this.arrowRight) {
-		// 		this.model.position.x += 0.5;
-		// 		this.model.rotation.x += 0.5;
-		// 	}
-		// 	if (this.arrowLeft) {
-		// 		this.model.position.x -= 0.5;
-		// 		this.model.rotation.x -= 0.5;
-		// 	}
-		// }
-		// renderer.setAnimationLoop( animate );
-		
-		// document.addEventListener("keydown", onDocumenteKeyDown, false)
-		
-		// function onDocumenteKeyDown(event) {
-		// 	console.log(event.key);
-		// 	console.log(event.keyCode);
-		// 	switch(event.key){
-		// 		case "ArrowUp":
-		// 			this.arrowUp = true;
-		// 		break;
-		// 		case "ArrowDown":
-		// 			this.arrowDown = true;
-		// 		break;
-		// 		case "ArrowLeft":
-		// 			this.arrowLeft = true;
-		// 		break;
-		// 		case "ArrowRight":
-		// 			this.arrowRight = true;
-		// 		break;
-		// 		case " ":
-		// 			this.space = true;
-		// 		break;
-		// 	}
-		// }
-		
-		// document.addEventListener("keyup", onDocumenteKeyUp, false)
-		
-		// function onDocumenteKeyUp(event) {
-		// 	console.log(event.key);
-		// 	console.log(event.keyCode);
-		// 	switch(event.key){
-		// 		case "ArrowUp":
-		// 			this.arrowUp = false;
-		// 		break;
-		// 		case "ArrowDown":
-		// 			this.arrowDown = false;
-		// 		break;
-		// 		case "ArrowLeft":
-		// 			this.arrowLeft = false;
-		// 		break;
-		// 		case "ArrowRight":
-		// 			this.arrowRight = false;
-		// 		break;
-		// 		case " ":
-		// 			this.space = false;
-		// 		break;
-		// 	}
-		// }
-		// 
-	}
+
+
+		}
 	}
 }
 
@@ -153,62 +84,62 @@ class Sun {
 		this.light = null
 		this.load(this);
 	}
-	
+
 	load(object) {
-		
+
 		const loader = new GLTFLoader();
-		
+
 		loader.load(
 			// resource URL
 			'models/Sun.gltf',
 			// called when the resource is loaded
 			function (gltf) {
-				
-				
+
+
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
-				
+
 				const light = new THREE.PointLight(0xff0000, 1, 100);
 				object.light = light;
 				object.model.add(light);
-				
+
 				// model = glb.scene.children[0];
 				// console.log(model);
 				// scene.add( model );
 				// model = glb.scene.children[12];
 				// this.scene.add = (this.model)
-				
+
 				// scene.add( gltf.scene );
-				
+
 				gltf.animations; // Array<THREE.AnimationClip>
 				gltf.scene; // THREE.Group
 				gltf.scenes; // Array<THREE.Group>
 				gltf.cameras; // Array<THREE.Camera>
 				gltf.asset; // Object
-				
+
 			},
 			// called while loading is progressing
 			function (xhr) {
-				
+
 				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-				
+
 			},
 			// called when loading has errors
 			function (error) {
-				
+
 				console.log('An error happened');
 				console.log(error);
-				
-				
+
+
 			}
-			
+
 		);
 	}
 	move() {
 		if (this.model) {
-			
+
 			this.model.rotation.y += 0.01; // Rotate the Sun (optional)
-			this.model.scale.set(5,5,5)
+			this.model.scale.set(5, 5, 5)
 			this.model.position.z = 0
 		}
 
@@ -220,59 +151,59 @@ class blackHole {
 		this.model = null;
 		this.load(this);
 	}
-	
+
 	load(object) {
-		
+
 		const loader = new GLTFLoader();
-		
+
 		loader.load(
 			// resource URL
 			'models/Black hole.gltf',
 			// called when the resource is loaded
 			function (gltf) {
-				
-				
+
+
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
-				
-				
+
+
 				// model = glb.scene.children[0];
 				// console.log(model);
 				// scene.add( model );
 				// model = glb.scene.children[12];
 				// this.scene.add = (this.model)
-				
+
 				// scene.add( gltf.scene );
-				
+
 				gltf.animations; // Array<THREE.AnimationClip>
 				gltf.scene; // THREE.Group
 				gltf.scenes; // Array<THREE.Group>
 				gltf.cameras; // Array<THREE.Camera>
 				gltf.asset; // Object
-				
+
 			},
 			// called while loading is progressing
 			function (xhr) {
-				
+
 				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-				
+
 			},
 			// called when loading has errors
 			function (error) {
-				
+
 				console.log('An error happened');
 				console.log(error);
-				
-				
+
+
 			}
-			
+
 		);
 	}
 	move() {
 		if (this.model) {
-			
+
 			this.model.rotation.y -= 0.01; // Rotate the Sun (optional)
-			this.model.scale.set(5,5,5)
+			this.model.scale.set(5, 5, 5)
 			this.model.position.z = -400
 			this.model.position.y = -100
 		}
@@ -314,15 +245,15 @@ class Planet {
 
 	move() {
 		if (this.model) {
-			this.model.scale.set(3,3,3)
+			this.model.scale.set(3, 3, 3)
 			this.model.rotation.y += 0.02;
-	  
+
 			this.angle += this.orbitSpeed; // Update the planet's angle for orbiting
-	  
-			this.model.position.x =  Math.cos(this.angle) +( this.orbitRadius *  Math.sin(this.angle)) ;
-			this.model.position.z =  Math.sin(this.angle) +( this.orbitRadius *  Math.cos(this.angle)) ;
+
+			this.model.position.x = Math.cos(this.angle) + (this.orbitRadius * Math.sin(this.angle));
+			this.model.position.z = Math.sin(this.angle) + (this.orbitRadius * Math.cos(this.angle));
 			//this.model.position.z = this.model.position.z;
-		  }
+		}
 	}
 }
 
@@ -342,34 +273,108 @@ let buraco = new blackHole();
 let light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
 
-// const light = new THREE.PointLight( 0xff0000, 1, 100 );
-// light.position.set( 0, 0 , -400 );
+// const light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
+// light.position.set( 10, 10 , -400 );
 // scene.add( light );
 
-const controls = new OrbitControls( camera, renderer.domElement );
+const controls = new OrbitControls(camera, renderer.domElement);
+camera.position.set( 0, 20, 50 );
+controls.update();
+// camera.rotation.x = 5.9;
+// camera.position.y = 5;
 
-camera.position.z = 50;
-camera.rotation.x = 5.9;
-camera.position.y = 5;
 
+let arrowUp = false;
+let arrowDown = false;
+let arrowLeft = false;
+let arrowRight = false;
 
 function animate() {
 	renderer.render(scene, camera);
-
+	
 	buraco.move();
 	nave.move();
 	venus.move();
 	mercurio.move();
 	terra.move();
 	marte.move();
-	jupiter.move();	
-	saturno.move();	
+	jupiter.move();
+	saturno.move();
 	urano.move();
 	netuno.move();
 	plutao.move();
 	sol.move();
 
-	 controls.update();
+	
+	
+	controls.update();
+
+		if (arrowUp) {
+			nave.model.position.y += 0.05;
+		}
+		if (arrowDown) {
+
+			nave.model.position.y -= 0.05;
+		}
+		if (arrowRight) {
+			nave.model.position.x += 0.05;
+
+		}
+		if (arrowLeft) {
+			nave.model.position.x -= 0.05;
+
+		}
+	}
+	renderer.setAnimationLoop( animate );
+
+	document.addEventListener("keydown", onDocumenteKeyDown, false)
+
+	function onDocumenteKeyDown(event) {
+		console.log(event.key);
+		console.log(event.keyCode);
+		switch(event.key){
+			case "ArrowUp":
+				arrowUp = true;
+			break;
+			case "ArrowDown":
+				arrowDown = true;
+			break;
+			case "ArrowLeft":
+				arrowLeft = true;
+			break;
+			case "ArrowRight":
+				arrowRight = true;
+			break;
+			case " ":
+				space = true;
+			break;
+		}
+	}
+
+	document.addEventListener("keyup", onDocumenteKeyUp, false)
+
+	function onDocumenteKeyUp(event) {
+		console.log(event.key);
+		console.log(event.keyCode);
+		switch(event.key){
+			case "ArrowUp":
+				arrowUp = false;
+			break;
+			case "ArrowDown":
+				arrowDown = false;
+			break;
+			case "ArrowLeft":
+				arrowLeft = false;
+			break;
+			case "ArrowRight":
+				arrowRight = false;
+			break;
+			case " ":
+				space = false;
+			break;
+		}
+	
+	// 
 
 	// updatePlanetOrbit(venus);
 	// updatePlanetOrbit(mercurio);
