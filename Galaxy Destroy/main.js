@@ -313,7 +313,7 @@ class Missil {
 
 	move() {
 		if (this.model) {
-			this.model.scale.set (10,10,10);
+			this.model.scale.set (.1,.1,.1);
 	
 		}
 	}
