@@ -284,8 +284,10 @@ class Missil {
 
 	move() {
 		if (this.model) {
-			this.model.scale.set (.02,.02,.02);
-	
+			//this.model.scale.set (.02,.02,.02);
+			this.model.position.z -= 4;
+			console.log("olllllllllllllllllllll");
+			
 		}
 	}
 }
@@ -302,7 +304,7 @@ let urano = new Planet('models/Uranus.gltf', 300, 0.0004, 20);
 let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
 let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
 let buraco = new blackHole();
-let missil = new Missil();
+//let missil = new Missil();
 
 let light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
@@ -324,6 +326,9 @@ let arrowLeft = false;
 let arrowRight = false;
 let arrowShift = false;
 let arrowCtrl = false;
+let timer = 0;
+let space = false;
+let missil;
 
 if (nave.model) {
 	nave.rotation.y = Math.PI;
@@ -344,11 +349,10 @@ function animate() {
 	netuno.move();
 	plutao.move();
 	sol.move();
-	missil.move();
-
 	
 	
 	// controls.update();
+	timer += 1;
 
 	if (arrowUp) {
 		nave.model.position.y += 1.05;
@@ -370,6 +374,14 @@ function animate() {
 	}
 	if (arrowCtrl) {
 		nave.model.position.z += 1.2;
+	}
+	if (space && timer >= 30) {
+		missil = new Missil();
+		//missil.move();
+		timer = 0;
+	}
+	if (missil.model) {
+		missil.move();
 	}
 
 	if (nave.model) {
