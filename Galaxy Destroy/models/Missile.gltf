@@ -1,0 +1,284 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.4.0)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 120,
+            "type": "VEC3",
+            "max": [
+                -9.777783393859863,
+                2.6622860431671143,
+                2.3475470542907715
+            ],
+            "min": [
+                -11.596936225891113,
+                -2.6618950366973877,
+                -2.3470571041107178
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 120,
+            "type": "VEC3",
+            "max": [
+                0.9388450384140015,
+                0.9590288400650024,
+                0.9997535943984985
+            ],
+            "min": [
+                -0.707197904586792,
+                -0.9590288400650024,
+                -0.9997535943984985
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 120,
+            "type": "VEC2",
+            "max": [
+                0.9912999868392944,
+                0.9947999715805054
+            ],
+            "min": [
+                0.005200000014156103,
+                0.15799999237060547
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 180,
+            "type": "SCALAR",
+            "max": [
+                119
+            ],
+            "min": [
+                0
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1007,
+            "type": "VEC3",
+            "max": [
+                1.000393033027649,
+                1.1842169761657715,
+                1.2025279998779297
+            ],
+            "min": [
+                -11.923502922058105,
+                -1.183825969696045,
+                -1.2020440101623535
+            ]
+        },
+        {
+            "bufferView": 5,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1007,
+            "type": "VEC3",
+            "max": [
+                1.0,
+                0.984815776348114,
+                1.0
+            ],
+            "min": [
+                -0.9398019313812256,
+                -0.984815776348114,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 6,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 1007,
+            "type": "VEC2",
+            "max": [
+                0.9918000102043152,
+                0.9947999715805054
+            ],
+            "min": [
+                0.005200000014156103,
+                0.008199989795684814
+            ]
+        },
+        {
+            "bufferView": 7,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 4746,
+            "type": "SCALAR",
+            "max": [
+                1006
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 55768,
+            "uri": "Missile_0.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 1440,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 1440,
+            "byteLength": 1440,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 2880,
+            "byteLength": 960,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 3840,
+            "byteLength": 720,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 4560,
+            "byteLength": 12084,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 16644,
+            "byteLength": 12084,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 28728,
+            "byteLength": 8056,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 36784,
+            "byteLength": 18984,
+            "target": 34963
+        }
+    ],
+    "images": [
+        {
+            "uri": "Missile.png"
+        }
+    ],
+    "materials": [
+        {
+            "name": "phong1SG",
+            "pbrMetallicRoughness": {
+                "baseColorTexture": {
+                    "index": 0
+                },
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.9298291802406311
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "meshes[0]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "meshes[1]",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 7,
+                    "attributes": {
+                        "POSITION": 4,
+                        "NORMAL": 5,
+                        "TEXCOORD_0": 6
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "Missile",
+            "children": [
+                1,
+                2
+            ]
+        },
+        {
+            "name": "Missile_Q001_Missile_Q010",
+            "mesh": 0,
+            "extras": {
+                "name": "Missile_Q.001_Missile_Q.010"
+            }
+        },
+        {
+            "name": "Missile_Q008",
+            "mesh": 1,
+            "extras": {
+                "name": "Missile_Q.008"
+            }
+        }
+    ],
+    "samplers": [
+        {
+            "magFilter": 9729,
+            "minFilter": 9986
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "textures": [
+        {
+            "source": 0,
+            "sampler": 0
+        }
+    ],
+    "scene": 0
+}

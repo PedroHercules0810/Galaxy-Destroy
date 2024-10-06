@@ -253,6 +253,72 @@ class Planet {
 	}
 }
 
+class Missil {
+	constructor() {
+		this.model = null;
+		this.light = null
+		this.load(this);
+	}
+
+	load() {
+		const loader = new GLTFLoader();
+		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc }); // Adjust color as needed
+
+		loader.load(
+			// resource URL
+			'models/Missile.gltf',
+			// called when the resource is loaded
+			function (gltf) {
+
+
+				scene.add(gltf.scene);
+				object.model = gltf.scene.children[0];
+
+				const light = new THREE.PointLight(0xff0000, 1, 100);
+				object.light = light;
+				object.model.add(light);
+
+				// model = glb.scene.children[0];
+				// console.log(model);
+				// scene.add( model );
+				// model = glb.scene.children[12];
+				// this.scene.add = (this.model)
+
+				// scene.add( gltf.scene );
+
+				gltf.animations; // Array<THREE.AnimationClip>
+				gltf.scene; // THREE.Group
+				gltf.scenes; // Array<THREE.Group>
+				gltf.cameras; // Array<THREE.Camera>
+				gltf.asset; // Object
+
+			},
+			// called while loading is progressing
+			function (xhr) {
+
+				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+
+			},
+			// called when loading has errors
+			function (error) {
+
+				console.log('An error happened');
+				console.log(error);
+
+
+			}
+
+		);
+	}
+
+	move() {
+		if (this.model) {
+			this.model.scale.set (10,10,10);
+	
+		}
+	}
+}
+
 let nave = new NaveEspacial();
 let sol = new Sun(150);
 let venus = new Planet('models/Venus.gltf', 200, 0.001, 20);
@@ -265,6 +331,7 @@ let urano = new Planet('models/Uranus.gltf', 300, 0.0004, 20);
 let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
 let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
 let buraco = new blackHole();
+let missil = new Missil();
 
 let light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
@@ -289,7 +356,7 @@ let arrowCtrl = false;
 
 if (nave.model) {
 	nave.rotation.y = Math.PI;
-	nave.position.set(0,0,30)
+	//nave.position.set(0,0,30)
 }
 
 function animate() {
@@ -306,31 +373,32 @@ function animate() {
 	netuno.move();
 	plutao.move();
 	sol.move();
+	missil.move();
 
 	
 	
 	// controls.update();
 
 	if (arrowUp) {
-		nave.model.position.y += 0.05;
+		nave.model.position.y += 1.05;
 	}
 	if (arrowDown) {
 
-		nave.model.position.y -= 0.05;
+		nave.model.position.y -= 1.05;
 	}
 	if (arrowRight) {
-		nave.model.position.x += 0.05;
+		nave.model.position.x += 1.05;
 
 	}
 	if (arrowLeft) {
-		nave.model.position.x -= 0.05;
+		nave.model.position.x -= 1.05;
 
 	}
-	if (arrowShift) {
-		nave.model.position.z -= 0.2;
+	if (arrowShift) { 
+		nave.model.position.z -= 1.2;
 	}
 	if (arrowCtrl) {
-		nave.model.position.z += 0.2;
+		nave.model.position.z += 1.2;
 	}
 
 	if (nave.model) {
