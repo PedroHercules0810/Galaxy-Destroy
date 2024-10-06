@@ -257,6 +257,7 @@ class Missil {
 	constructor() {
 		this.model = null;
 		this.light = null
+		this.creationTime = 0;		
 		this.load(this);
 	}
 
@@ -284,10 +285,10 @@ class Missil {
 
 	move() {
 		if (this.model) {
-			//this.model.scale.set (.02,.02,.02);
-			this.model.position.z -= 4;
-			console.log("olllllllllllllllllllll");
-			
+			const elapsedTime = performance.now() - this.creationTime;
+			if (elapsedTime >= 0) { // Handle potential negative elapsedTime
+				this.model.position.z -= 4; 
+			}
 		}
 	}
 }
@@ -328,7 +329,7 @@ let arrowShift = false;
 let arrowCtrl = false;
 let timer = 0;
 let space = false;
-let missil;
+let missiles = [];
 
 if (nave.model) {
 	nave.rotation.y = Math.PI;
@@ -375,15 +376,34 @@ function animate() {
 	if (arrowCtrl) {
 		nave.model.position.z += 1.2;
 	}
-	if (space && timer >= 30) {
-		missil = new Missil();
-		//missil.move();
-		timer = 0;
+	if (space && timer >= 60) {
+		if (nave.model) {
+			
+			let missil = new Missil();
+			if (missil.model) {
+				
+				missil.model.position.x = nave.model.position.x
+				missil.model.position.y = nave.model.position.y
+				missil.model.position.z = nave.model.position.z
+			}
+			missiles.push(missil)
+			timer = 0;
+		}
 	}
-	if (missil.model) {
-		missil.move();
+	
+	for (let i = 0; i < missiles.length; i++) {
+		missiles[i].move();
+		if (missiles[i].model) {
+			
+			if (missiles[i].model.position.z <= -500) {
+				console.log("vazei");
+				missiles.splice(i);
+				
+			}
+		}
+		
 	}
-
+	
 	if (nave.model) {
 		
 		camera.position.set(nave.model.position.x, nave.model.position.y, nave.model.position.z+2)
