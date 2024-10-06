@@ -265,55 +265,26 @@ class Missil {
 		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc }); // Adjust color as needed
 
 		loader.load(
-			// resource URL
 			'models/Missile.gltf',
-			// called when the resource is loaded
-			function (gltf) {
+			(gltf) => {
+				this.model = gltf.scene.children[0];
+				scene.add(this.model);
 
-
-				scene.add(gltf.scene);
-				object.model = gltf.scene.children[0];
-
-				const light = new THREE.PointLight(0xff0000, 1, 100);
-				object.light = light;
-				object.model.add(light);
-
-				// model = glb.scene.children[0];
-				// console.log(model);
-				// scene.add( model );
-				// model = glb.scene.children[12];
-				// this.scene.add = (this.model)
-
-				// scene.add( gltf.scene );
-
-				gltf.animations; // Array<THREE.AnimationClip>
-				gltf.scene; // THREE.Group
-				gltf.scenes; // Array<THREE.Group>
-				gltf.cameras; // Array<THREE.Camera>
-				gltf.asset; // Object
-
+				this.model.material = material;
 			},
-			// called while loading is progressing
-			function (xhr) {
-
+			(xhr) => {
 				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-
 			},
-			// called when loading has errors
-			function (error) {
-
+			(error) => {
 				console.log('An error happened');
-				console.log(error);
-
-
+				console.error(error);
 			}
-
 		);
 	}
 
 	move() {
 		if (this.model) {
-			this.model.scale.set (.1,.1,.1);
+			this.model.scale.set (.02,.02,.02);
 	
 		}
 	}
