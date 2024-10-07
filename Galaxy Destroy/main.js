@@ -50,7 +50,7 @@ class NaveEspacial {
 			// called while loading is progressing
 			function (xhr) {
 
-				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+				//console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 
 			},
 			// called when loading has errors
@@ -94,7 +94,7 @@ class Sun {
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
 
-				const light = new THREE.PointLight(0xff0000, 1, 100);
+				const light = new THREE.PointLight(0xff0000, 1, 1000000);
 				object.light = light;
 				object.model.add(light);
 
@@ -116,7 +116,7 @@ class Sun {
 			// called while loading is progressing
 			function (xhr) {
 
-				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+				//console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 
 			},
 			// called when loading has errors
@@ -180,7 +180,7 @@ class blackHole {
 			// called while loading is progressing
 			function (xhr) {
 
-				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+				//console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 
 			},
 			// called when loading has errors
@@ -230,7 +230,7 @@ class Planet {
 				this.model.material = material;
 			},
 			(xhr) => {
-				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+				////console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 			},
 			(error) => {
 				console.log('An error happened');
@@ -270,11 +270,13 @@ class Missil {
 			(gltf) => {
 				this.model = gltf.scene.children[0];
 				scene.add(this.model);
-
 				this.model.material = material;
+				this.model.position.x = nave.model.position.x
+				this.model.position.y = nave.model.position.y
+				this.model.position.z = nave.model.position.z
 			},
 			(xhr) => {
-				console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+				////console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 			},
 			(error) => {
 				console.log('An error happened');
@@ -286,7 +288,7 @@ class Missil {
 	move() {
 		if (this.model) {
 			const elapsedTime = performance.now() - this.creationTime;
-			if (elapsedTime >= 0) { // Handle potential negative elapsedTime
+			if (elapsedTime >= 3000) { // Handle potential negative elapsedTime
 				this.model.position.z -= 4; 
 			}
 		}
@@ -376,16 +378,10 @@ function animate() {
 	if (arrowCtrl) {
 		nave.model.position.z += 1.2;
 	}
-	if (space && timer >= 60) {
+	if (space && timer >= 200) {
 		if (nave.model) {
 			
 			let missil = new Missil();
-			if (missil.model) {
-				
-				missil.model.position.x = nave.model.position.x
-				missil.model.position.y = nave.model.position.y
-				missil.model.position.z = nave.model.position.z
-			}
 			missiles.push(missil)
 			timer = 0;
 		}
@@ -398,7 +394,6 @@ function animate() {
 			if (missiles[i].model.position.z <= -500) {
 				console.log("vazei");
 				missiles.splice(i);
-				
 			}
 		}
 		
@@ -419,8 +414,8 @@ function animate() {
 	document.addEventListener("keydown", onDocumenteKeyDown, false)
 
 	function onDocumenteKeyDown(event) {
-		console.log(event.key);
-		console.log(event.keyCode);
+		//console.log(event.key);
+		//console.log(event.keyCode);
 		switch(event.key){
 			case "ArrowUp":
 				arrowUp = true;
@@ -449,8 +444,8 @@ function animate() {
 	document.addEventListener("keyup", onDocumenteKeyUp, false)
 
 function onDocumenteKeyUp(event) {
-	console.log(event.key);
-	console.log(event.keyCode);
+	//console.log(event.key);
+	//console.log(event.keyCode);
 	switch(event.key){
 		case "ArrowUp":
 			arrowUp = false;
