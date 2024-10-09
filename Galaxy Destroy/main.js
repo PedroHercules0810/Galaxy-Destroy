@@ -32,6 +32,7 @@ class NaveEspacial {
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
 
+
 				// model = glb.scene.children[0];
 				// console.log(model);
 				// scene.add( model );
@@ -67,7 +68,7 @@ class NaveEspacial {
 	move() {
 		if (this.model) {
 			// this.model.rotation.y = Math.PI;
-			this.model.scale.set(.1, .1, .1)
+			this.model.scale.set(.01, .01, .01)
 		}
 	}
 }
@@ -135,7 +136,7 @@ class Sun {
 
 			this.model.rotation.y += 0.01; // Rotate the Sun (optional)
 			this.model.scale.set(50, 50, 50)
-			this.model.position.z = 0
+			// this.model.position.z = 0
 		}
 
 	}
@@ -274,6 +275,8 @@ class Missil {
 				this.model.position.x = nave.model.position.x
 				this.model.position.y = nave.model.position.y
 				this.model.position.z = nave.model.position.z
+				this.model.rotation.y = Math.PI/2;
+				this.model.scale.set(.3, .3, .3)
 			},
 			(xhr) => {
 				////console.log((xhr.loaded / xhr.total * 100) + '% loaded');
@@ -335,7 +338,7 @@ let missiles = [];
 
 if (nave.model) {
 	nave.rotation.y = Math.PI;
-	//nave.position.set(0,0,30)
+	nave.model.position.z = 800;
 }
 
 function animate() {
@@ -400,8 +403,10 @@ function animate() {
 	}
 	
 	if (nave.model) {
+		console.log(nave.model.position);
 		
-		camera.position.set(nave.model.position.x, nave.model.position.y, nave.model.position.z+2)
+		camera.position.set(nave.model.position.x, nave.model.position.y, nave.model.position.z+.2)
+		camera.rotation.x = .1
 	}
 
 	// camera.position.x = nave.model.position.x;
