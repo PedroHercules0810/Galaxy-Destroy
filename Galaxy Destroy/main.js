@@ -315,6 +315,10 @@ let buraco = new blackHole();
 let light = new THREE.AmbientLight(0xffffff);
 scene.add(light);
 
+const textuLoader = new THREE.TextureLoader();
+const background = textuLoader.load('models/background.jpg');
+scene.background = background
+
 // const light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
 // light.position.set( 10, 10 , -400 );
 // scene.add( light );
