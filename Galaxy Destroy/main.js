@@ -16,12 +16,12 @@ class NaveEspacial {
 		this.model = null;
 		this.load(this);
 	}
-	
+
 	load(object) {
-		
+
 		const loader = new GLTFLoader();
 
-		
+
 		loader.load(
 			// resource URL
 			'models/Spaceship.gltf',
@@ -95,7 +95,7 @@ class Sun {
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
 
-				const light = new THREE.PointLight(0xff0000, 1, 1000000);
+				const light = new THREE.PointLight(0xf2de24, 1000000, 1000000000);
 				object.light = light;
 				object.model.add(light);
 
@@ -258,7 +258,7 @@ class Missil {
 	constructor() {
 		this.model = null;
 		this.light = null
-		this.creationTime = 0;		
+		this.creationTime = 0;
 		this.load(this);
 	}
 
@@ -275,7 +275,7 @@ class Missil {
 				this.model.position.x = nave.model.position.x
 				this.model.position.y = nave.model.position.y
 				this.model.position.z = nave.model.position.z
-				this.model.rotation.y = Math.PI/2;
+				this.model.rotation.y = Math.PI / 2;
 				this.model.scale.set(.3, .3, .3)
 			},
 			(xhr) => {
@@ -292,7 +292,12 @@ class Missil {
 		if (this.model) {
 			const elapsedTime = performance.now() - this.creationTime;
 			if (elapsedTime >= 3000) { // Handle potential negative elapsedTime
-				this.model.position.z -= 4; 
+				this.model.position.z -= 4;
+			}
+			if (this.model.position.z <= -500) {
+				console.log('BYE BYE');
+				scene.remove(this.model);
+				
 			}
 		}
 	}
@@ -312,8 +317,10 @@ let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
 let buraco = new blackHole();
 //let missil = new Missil();
 
-let light = new THREE.AmbientLight(0xffffff);
-scene.add(light);
+
+
+let light2 = new THREE.AmbientLight(0xffffff, .1);
+scene.add(light2);
 
 const textuLoader = new THREE.TextureLoader();
 const background = textuLoader.load('models/background.jpg');
@@ -359,8 +366,8 @@ function animate() {
 	netuno.move();
 	plutao.move();
 	sol.move();
-	
-	
+
+
 	// controls.update();
 	timer += 1;
 
@@ -377,12 +384,12 @@ function animate() {
 	}
 	if (arrowLeft) {
 		nave.model.position.x -= 1.05;
-	
-	}
-	
 
-	
-	if (arrowShift) { 
+	}
+
+
+
+	if (arrowShift) {
 		nave.model.position.z -= 1.2;
 	}
 	if (arrowCtrl) {
@@ -390,96 +397,96 @@ function animate() {
 	}
 	if (space && timer >= 200) {
 		if (nave.model) {
-			
+
 			let missil = new Missil();
 			missiles.push(missil)
 			timer = 0;
 		}
 	}
-	
+
 	for (let i = 0; i < missiles.length; i++) {
 		missiles[i].move();
 		if (missiles[i].model) {
-			
+
 			if (missiles[i].model.position.z <= -500) {
 				console.log("vazei");
 				missiles.splice(i);
 			}
 		}
-		
+
 	}
-	
+
 	if (nave.model) {
-		console.log(nave.model.position);
-		
-		camera.position.set(nave.model.position.x, nave.model.position.y, nave.model.position.z+.2)
+		// console.log(nave.model.position);
+
+		camera.position.set(nave.model.position.x, nave.model.position.y, nave.model.position.z + .2)
 		camera.rotation.x = .1
 	}
 
 	// camera.position.x = nave.model.position.x;
 	// camera.position.y = nave.model.position.y;
 	// camera.position.z = nave.model.position.z - 5;
-		
+
 }
-	renderer.setAnimationLoop( animate );
+renderer.setAnimationLoop(animate);
 
-	document.addEventListener("keydown", onDocumenteKeyDown, false)
+document.addEventListener("keydown", onDocumenteKeyDown, false)
 
-	function onDocumenteKeyDown(event) {
-		//console.log(event.key);
-		//console.log(event.keyCode);
-		switch(event.key){
-			case "ArrowUp":
-				arrowUp = true;
+function onDocumenteKeyDown(event) {
+	//console.log(event.key);
+	//console.log(event.keyCode);
+	switch (event.key) {
+		case "ArrowUp":
+			arrowUp = true;
 			break;
-			case "ArrowDown":
-				arrowDown = true;
+		case "ArrowDown":
+			arrowDown = true;
 			break;
-			case "ArrowLeft":
-				arrowLeft = true;
+		case "ArrowLeft":
+			arrowLeft = true;
 			break;
-			case "ArrowRight":
-				arrowRight = true;
+		case "ArrowRight":
+			arrowRight = true;
 			break;
-			case " ":
-				space = true;
+		case " ":
+			space = true;
 			break;
-			case "Shift":
-				arrowShift = true;
+		case "Shift":
+			arrowShift = true;
 			break;
-			case "Control":
-				arrowCtrl = true;
+		case "Control":
+			arrowCtrl = true;
 			break;
-		}
 	}
+}
 
-	document.addEventListener("keyup", onDocumenteKeyUp, false)
+document.addEventListener("keyup", onDocumenteKeyUp, false)
 
 function onDocumenteKeyUp(event) {
 	//console.log(event.key);
 	//console.log(event.keyCode);
-	switch(event.key){
+	switch (event.key) {
 		case "ArrowUp":
 			arrowUp = false;
-		break;
+			break;
 		case "ArrowDown":
 			arrowDown = false;
-		break;
+			break;
 		case "ArrowLeft":
 			arrowLeft = false;
-		break;
+			break;
 		case "ArrowRight":
 			arrowRight = false;
-		break;
+			break;
 		case " ":
 			space = false;
-		break;
+			break;
 		case "Shift":
 			arrowShift = false;
-		break;
+			break;
 		case "Control":
 			arrowCtrl = false;
-		break;
+			break;
 	}
 
 	// 
