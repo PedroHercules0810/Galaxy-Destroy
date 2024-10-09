@@ -373,8 +373,11 @@ function animate() {
 	}
 	if (arrowLeft) {
 		nave.model.position.x -= 1.05;
-
+	
 	}
+	
+
+	
 	if (arrowShift) { 
 		nave.model.position.z -= 1.2;
 	}
