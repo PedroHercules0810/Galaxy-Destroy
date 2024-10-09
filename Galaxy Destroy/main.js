@@ -9,7 +9,6 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-let model = null;
 
 class NaveEspacial {
 	constructor() {
@@ -241,6 +240,11 @@ class Planet {
 	}
 
 	move() {
+
+		if (this.vida <= 0) {
+			scene.remove(this.model)
+		}
+
 		if (this.model) {
 			this.model.scale.set(30, 30, 30)
 			this.model.rotation.y += 0.02;
@@ -258,7 +262,7 @@ class Missil {
 	constructor() {
 		this.model = null;
 		this.light = null
-		this.creationTime = 0;
+		this.dano = 5;
 		this.load(this);
 	}
 
@@ -288,16 +292,17 @@ class Missil {
 		);
 	}
 
+	destroy(){
+		if (this.model) {
+			scene.remove(this.model);
+		}
+	}
+
 	move() {
 		if (this.model) {
 			const elapsedTime = performance.now() - this.creationTime;
-			if (elapsedTime >= 3000) { // Handle potential negative elapsedTime
-				this.model.position.z -= 4;
-			}
-			if (this.model.position.z <= -500) {
-				console.log('BYE BYE');
-				scene.remove(this.model);
-				
+			if (elapsedTime >= 3) { // Handle potential negative elapsedTime
+				this.model.position.z -= .004;
 			}
 		}
 	}
@@ -309,7 +314,7 @@ let venus = new Planet('models/Venus.gltf', 200, 0.001, 20);
 let mercurio = new Planet('models/Mercury.gltf', 150, 0.002, 20);
 let terra = new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20);
 let marte = new Planet('models/Mars.gltf', 240, 0.0006, 20);
-let jupiter = new Planet('models/Jupiter.gltf', 300, 0.0006, 20);
+let jupiter = new Planet('models/Jupiter.gltf', 300, 0.0004, 20);
 let saturno = new Planet('models/Saturn.gltf', 390, 0.0002, 20);
 let urano = new Planet('models/Uranus.gltf', 300, 0.0004, 20);
 let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
@@ -317,6 +322,13 @@ let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
 let buraco = new blackHole();
 //let missil = new Missil();
 
+function checkCollision(missil, Planet) {
+	if(missil.model.position.distanceTo(Planet.model.position)){
+		console.log('Bateu!');
+		return true;
+	}
+	return false;
+}
 
 
 let light2 = new THREE.AmbientLight(0xffffff, .1);
@@ -404,18 +416,26 @@ function animate() {
 		}
 	}
 
+	console.log(jupiter.vida);
+	
 	for (let i = 0; i < missiles.length; i++) {
 		missiles[i].move();
 		if (missiles[i].model) {
-
-			if (missiles[i].model.position.z <= -500) {
-				console.log("vazei");
-				missiles.splice(i);
+			if(checkCollision(missiles[i], jupiter) ){
+				jupiter.vida -= missiles[i].dano;
+				missiles[i].destroy();
+				 missiles.splice(i);
+				}
+				else if (missiles[i].model.position.z <= -500) {
+					missiles[i].destroy();
+					 missiles.splice(i);
+					
 			}
 		}
 
 	}
-
+	console.log(missiles);
+	
 	if (nave.model) {
 		// console.log(nave.model.position);
 
