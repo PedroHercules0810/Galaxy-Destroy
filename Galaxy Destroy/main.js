@@ -311,19 +311,19 @@ let venus = new Planet('models/Venus.gltf', 200, 0.001, 20);
 let mercurio = new Planet('models/Mercury.gltf', 150, 0.002, 20);
 let terra = new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20);
 let marte = new Planet('models/Mars.gltf', 240, 0.0006, 20);
-let jupiter = new Planet('models/Jupiter.gltf', 300, 0.0004, 20);
+let jupiter = new Planet('models/Jupiter.gltf', 300, 0.0004, 2);
 let saturno = new Planet('models/Saturn.gltf', 390, 0.0002, 20);
-let urano = new Planet('models/Uranus.gltf', 300, 0.0004, 20);
+let urano = new Planet('models/Uranus.gltf', 500, 0.0004, 20);
 let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
 let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
 let buraco = new blackHole();
-//let missil = new Missil();
 
-function checkCollision(missil, Planet) {
-	let distance = missil.model.position.distanceTo(Planet.model.position);
-	if (distance <= 10 || distance == 0) {
-		console.log('bati');
-		return true;
+function checkCollision(missil, planeta) {
+	if (missil && planeta) {
+		if (missil.model.position.distanceTo(planeta.model.position) <= 10 || missil.model.position.distanceTo(planeta.model.position) == 0) {
+			console.log('bati');
+			return true;
+		}
 	}
 	return false;
 }
@@ -334,18 +334,7 @@ scene.add(light2);
 
 const textuLoader = new THREE.TextureLoader();
 const background = textuLoader.load('models/background.jpg');
-scene.background = background
-
-// const light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
-// light.position.set( 10, 10 , -400 );
-// scene.add( light );
-
-// const controls = new OrbitControls(camera, renderer.domElement);
-// camera.position.set( 0, 20, 50 );
-// controls.update();
-// camera.rotation.x = 5.9;
-// camera.position.y = 5;
-
+scene.background = background;
 
 let arrowUp = false;
 let arrowDown = false;
@@ -377,8 +366,6 @@ function animate() {
 	plutao.move();
 	sol.move();
 
-
-	// controls.update();
 	timer += 1;
 
 	if (arrowUp) {
@@ -422,24 +409,31 @@ function animate() {
 		missiles[i].move();
 		if (missiles[i].model) {
 			// console.log(missiles[i].model.position.distanceTo(jupiter.model.position));
-			if (checkCollision(missiles[i], jupiter)) {
-				jupiter.vida -= missiles[i].dano;
-				console.log('bati');
-
-				missiles[i].destroy();
-				missiles.splice(i);
+			if (jupiter.model) {
+				if (checkCollision(missiles[i], jupiter)) {
+					jupiter.vida -= missiles[i].dano;
+					console.log('bati');
+					
+					missiles[i].destroy();
+					missiles.splice(i);
+					break;
+				}
 			}
-
-			if (checkCollision(missiles[i], netuno)) {
-				netuno.vida -= missiles[i].dano;
-				missiles[i].destroy();
-				missiles.splice(i);
+			if (netuno.model) {
+				
+				if (checkCollision(missiles[i], netuno)) {
+					netuno.vida -= missiles[i].dano;
+					missiles[i].destroy();
+					missiles.splice(i);
+					break;
+				}
 			}
-
+			
 			if (checkCollision(missiles[i], urano)) {
 				urano.vida -= missiles[i].dano;
 				missiles[i].destroy();
 				missiles.splice(i);
+				break;
 			}
 			
 			else if (missiles[i].model.position.z <= -500) {
