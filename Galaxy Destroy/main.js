@@ -98,14 +98,6 @@ class Sun {
 				object.light = light;
 				object.model.add(light);
 
-				// model = glb.scene.children[0];
-				// console.log(model);
-				// scene.add( model );
-				// model = glb.scene.children[12];
-				// this.scene.add = (this.model)
-
-				// scene.add( gltf.scene );
-
 				gltf.animations; // Array<THREE.AnimationClip>
 				gltf.scene; // THREE.Group
 				gltf.scenes; // Array<THREE.Group>
@@ -130,7 +122,16 @@ class Sun {
 
 		);
 	}
+
+	
+
 	move() {
+		
+		if (this.vida <= 0) {
+			scene.remove(this.model);
+			// new blackHole();
+		}
+
 		if (this.model) {
 
 			this.model.rotation.y += 0.01; // Rotate the Sun (optional)
@@ -219,7 +220,7 @@ class Planet {
 
 	load() {
 		const loader = new GLTFLoader();
-		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc }); // Adjust color as needed
+		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc });
 
 		loader.load(
 			this.modelPath,
@@ -249,11 +250,11 @@ class Planet {
 			this.model.scale.set(30, 30, 30)
 			this.model.rotation.y += 0.02;
 
-			this.angle += this.orbitSpeed; // Update the planet's angle for orbiting
+			this.angle += this.orbitSpeed;
 
 			this.model.position.x = Math.cos(this.angle) + (this.orbitRadius * Math.sin(this.angle));
 			this.model.position.z = Math.sin(this.angle) + (this.orbitRadius * Math.cos(this.angle));
-			//this.model.position.z = this.model.position.z;
+
 		}
 	}
 }
@@ -306,7 +307,7 @@ class Missil {
 }
 
 let nave = new NaveEspacial();
-let sol = new Sun(150);
+let sol = new Sun(5);
 let venus = new Planet('models/Venus.gltf', 200, 0.001, 20);
 let mercurio = new Planet('models/Mercury.gltf', 150, 0.002, 20);
 let terra = new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20);
@@ -316,7 +317,7 @@ let saturno = new Planet('models/Saturn.gltf', 390, 0.0002, 20);
 let urano = new Planet('models/Uranus.gltf', 500, 0.0004, 20);
 let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
 let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
-let buraco = new blackHole();
+// let buraco = new blackHole();
 
 function checkCollision(missil, planeta) {
 	if (missil && planeta) {
@@ -353,10 +354,9 @@ if (nave.model) {
 
 function animate() {
 	renderer.render(scene, camera);
-	buraco.move();
+	// buraco.move();
 	nave.move();
 	venus.move();
-	mercurio.move();
 	terra.move();
 	marte.move();
 	jupiter.move();
@@ -365,6 +365,7 @@ function animate() {
 	netuno.move();
 	plutao.move();
 	sol.move();
+	mercurio.move();
 
 	timer += 1;
 
@@ -403,32 +404,38 @@ function animate() {
 		}
 	}
 
-	console.log(jupiter.vida);
+	console.log(sol.vida);
 
 	for (let i = 0; i < missiles.length; i++) {
 		missiles[i].move();
 		if (missiles[i].model) {
-			// console.log(missiles[i].model.position.distanceTo(jupiter.model.position));
-			if (jupiter.model) {
-				if (checkCollision(missiles[i], jupiter)) {
-					jupiter.vida -= missiles[i].dano;
-					console.log('bati');
-					
-					missiles[i].destroy();
-					missiles.splice(i);
-					break;
-				}
+
+			if (checkCollision(missiles[i], jupiter)) {
+				jupiter.vida -= missiles[i].dano;
+				console.log('bati');
+
+				missiles[i].destroy();
+				missiles.splice(i);
+				break;
 			}
-			if (netuno.model) {
+
+			if (checkCollision(missiles[i], sol)) {
+				sol.vida -= missiles[i].dano;
+				console.log('bati');
 				
-				if (checkCollision(missiles[i], netuno)) {
-					netuno.vida -= missiles[i].dano;
-					missiles[i].destroy();
-					missiles.splice(i);
-					break;
-				}
+				missiles[i].destroy();
+				missiles.splice(i);
+				break;
 			}
-			
+
+			if (checkCollision(missiles[i], netuno)) {
+				netuno.vida -= missiles[i].dano;
+				missiles[i].destroy();
+				missiles.splice(i);
+				break;
+			}
+
+
 			if (checkCollision(missiles[i], urano)) {
 				urano.vida -= missiles[i].dano;
 				missiles[i].destroy();
@@ -473,18 +480,15 @@ function animate() {
 		}
 
 	}
-	// console.log(missiles);
+
 
 	if (nave.model) {
-		// console.log(nave.model.position);
+
 
 		camera.position.set(nave.model.position.x, nave.model.position.y, nave.model.position.z + .2)
 		camera.rotation.x = .1
 	}
 
-	// camera.position.x = nave.model.position.x;
-	// camera.position.y = nave.model.position.y;
-	// camera.position.z = nave.model.position.z - 5;
 
 }
 renderer.setAnimationLoop(animate);
@@ -522,8 +526,6 @@ function onDocumenteKeyDown(event) {
 document.addEventListener("keyup", onDocumenteKeyUp, false)
 
 function onDocumenteKeyUp(event) {
-	//console.log(event.key);
-	//console.log(event.keyCode);
 	switch (event.key) {
 		case "ArrowUp":
 			arrowUp = false;
@@ -548,17 +550,6 @@ function onDocumenteKeyUp(event) {
 			break;
 	}
 
-	// 
-
-	// updatePlanetOrbit(venus);
-	// updatePlanetOrbit(mercurio);
-
-
-	// if (nave.model) {
-
-	//     nave.model.rotation.y += 0.02;
-
-	// }
 	renderer.setAnimationLoop(animate);
 }
 
