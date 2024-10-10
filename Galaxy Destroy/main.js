@@ -292,7 +292,7 @@ class Missil {
 		);
 	}
 
-	destroy(){
+	destroy() {
 		if (this.model) {
 			scene.remove(this.model);
 		}
@@ -300,7 +300,7 @@ class Missil {
 
 	move() {
 		if (this.model) {
-				this.model.position.z -= 4;
+			this.model.position.z -= 4;
 		}
 	}
 }
@@ -321,7 +321,7 @@ let buraco = new blackHole();
 
 function checkCollision(missil, Planet) {
 	let distance = missil.model.position.distanceTo(Planet.model.position);
-	if(distance <= 10 || distance == 0 ){
+	if (distance <= 10 || distance == 0) {
 		console.log('bati');
 		return true;
 	}
@@ -410,36 +410,42 @@ function animate() {
 
 			let missil = new Missil();
 			console.log('eu');
-			
+
 			missiles.push(missil)
 			timer = 0;
 		}
 	}
 
 	console.log(jupiter.vida);
-	
+
 	for (let i = 0; i < missiles.length; i++) {
 		missiles[i].move();
 		if (missiles[i].model) {
 			// console.log(missiles[i].model.position.distanceTo(jupiter.model.position));
-			if(checkCollision(missiles[i], jupiter) ){
+			if (checkCollision(missiles[i], jupiter)) {
 				jupiter.vida -= missiles[i].dano;
 				console.log('bati');
-				
+
 				missiles[i].destroy();
-				 missiles.splice(i);
-				}
-				else if(missiles[i].model.position.z <= -500) {
-					console.log('sai');
-					missiles[i].destroy();
-					 missiles.splice(i);
-					
+				missiles.splice(i);
+			}
+
+			if (checkCollision(missiles[i], netuno)) {
+				netuno.vida -= missiles[i].dano;
+				missiles[i].destroy();
+				missiles.splice(i);
+			}
+			else if (missiles[i].model.position.z <= -500) {
+				console.log('sai');
+				missiles[i].destroy();
+				missiles.splice(i);
+
 			}
 		}
 
 	}
 	// console.log(missiles);
-	
+
 	if (nave.model) {
 		// console.log(nave.model.position);
 
