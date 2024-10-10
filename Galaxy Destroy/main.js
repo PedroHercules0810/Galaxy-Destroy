@@ -317,7 +317,7 @@ let saturno = new Planet('models/Saturn.gltf', 390, 0.0002, 20);
 let urano = new Planet('models/Uranus.gltf', 500, 0.0004, 20);
 let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
 let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
-// let buraco = new blackHole();
+let buraco = new blackHole();
 
 function checkCollision(missil, planeta) {
 	if (missil && planeta) {
@@ -354,7 +354,7 @@ if (nave.model) {
 
 function animate() {
 	renderer.render(scene, camera);
-	// buraco.move();
+	buraco.move();
 	nave.move();
 	venus.move();
 	terra.move();
@@ -404,7 +404,7 @@ function animate() {
 		}
 	}
 
-	console.log(sol.vida);
+	// console.log(sol.vida);
 
 	for (let i = 0; i < missiles.length; i++) {
 		missiles[i].move();
@@ -465,7 +465,7 @@ function animate() {
 			}
 
 			if (checkCollision(missiles[i], mercurio)) {
-				mercurio -= missiles[i].dano;
+				mercurio.vida -= missiles[i].dano;
 				missiles[i].destroy();
 				missiles.splice(i);
 				break;
