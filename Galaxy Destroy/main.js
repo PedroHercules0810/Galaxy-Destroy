@@ -9,6 +9,8 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+let superNova = false;
+let blackholeExists = false;
 
 class NaveEspacial {
 	constructor() {
@@ -73,6 +75,7 @@ class Sun {
 		this.light = null
 		this.vida = vida;
 		this.load(this);
+	
 	}
 
 	load(object) {
@@ -100,27 +103,24 @@ class Sun {
 		);
 	}
 
-	
-
 	move() {
-		
-		if (this.vida <= 0) {
-			if (this.model) {
-			scene.remove(venus.model)
-			scene.remove(mercurio.model)
-			scene.remove(terra.model)
-			scene.remove(marte.model)
-			scene.remove(jupiter.model)
-			scene.remove(saturno.model)
-			scene.remove(urano.model)
-			scene.remove(netuno.model)
-			scene.remove(plutao.model)
-			scene.remove(this.model)
-			//let buraco = new blackHole();
+		if (this.vida == 0) {
+			if (this.model ) {
+				scene.remove(venus.model)
+				scene.remove(mercurio.model)
+				scene.remove(terra.model)
+				scene.remove(marte.model)
+				scene.remove(jupiter.model)
+				scene.remove(saturno.model)
+				scene.remove(urano.model)
+				scene.remove(netuno.model)
+				scene.remove(plutao.model)
+				scene.remove(this.model)
+				superNova = true;
 			}
 			
 		}
-
+		
 
 		if (this.model) {
 
@@ -136,6 +136,9 @@ class blackHole {
 	constructor() {
 		this.model = null;
 		this.load(this);
+		this.tamanho = 5;
+		this.tamanhoMax = 20;
+		blackholeExists = true;
 	}
 
 	load(object) {
@@ -151,6 +154,10 @@ class blackHole {
 
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
+
+				const light = new THREE.PointLight(0x450463, 100000000, 1000000000000);
+				object.light = light;
+				object.model.add(light);
 
 
 				// model = glb.scene.children[0];
@@ -186,11 +193,20 @@ class blackHole {
 		);
 	}
 	move() {
+
 		if (this.model) {
+			if (this.tamanho < this.tamanhoMax) {
+				
+				this.tamanho += .05;
+			}else{
+				this.tamanho = this.tamanhoMax;
+			}
 
 			this.model.rotation.y -= 0.01; // Rotate the Sun (optional)
-			this.model.scale.set(5, 5, 5)
-			this.model.position.z = -400
+			
+				this.model.scale.set(this.tamanho, this.tamanho, this.tamanho)
+			
+			// this.model.position.z = -400
 			this.model.position.y = -100
 		}
 
@@ -297,7 +313,7 @@ class Missil {
 }
 
 let nave = new NaveEspacial();
-let sol = new Sun(50);
+let sol = new Sun(5);
 let venus = new Planet('models/Venus.gltf', 200, 0.001, 20);
 let mercurio = new Planet('models/Mercury.gltf', 150, 0.002, 20);
 let terra = new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20);
@@ -307,7 +323,8 @@ let saturno = new Planet('models/Saturn.gltf', 390, 0.0002, 20);
 let urano = new Planet('models/Uranus.gltf', 500, 0.0004, 20);
 let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
 let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
-let buraco = new blackHole();
+
+
 
 function checkCollision(missil, planeta) {
 	if (missil && planeta) {
@@ -334,6 +351,7 @@ let arrowRight = false;
 let arrowShift = false;
 let arrowCtrl = false;
 let timer = 0;
+let buraco;
 let space = false;
 let missiles = [];
 
@@ -343,7 +361,7 @@ if (nave.model) {
 
 function animate() {
 	renderer.render(scene, camera);
-	buraco.move();
+	
 	nave.move();
 	venus.move();
 	terra.move();
@@ -393,6 +411,7 @@ function animate() {
 		}
 	}
 
+	
 	// console.log(sol.vida);
 
 	for (let i = 0; i < missiles.length; i++) {
@@ -470,7 +489,16 @@ function animate() {
 
 	}
 
-
+	if (superNova && !blackholeExists) {
+		superNova = false;
+		buraco = new blackHole();
+		blackholeExists = true;
+	}
+	if (superNova) {
+		buraco.move();
+	}
+	
+	
 	if (nave.model) {
 
 
@@ -541,5 +569,5 @@ function onDocumenteKeyUp(event) {
 
 	renderer.setAnimationLoop(animate);
 }
-
 animate();
+
