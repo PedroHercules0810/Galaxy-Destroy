@@ -19,50 +19,45 @@ class NaveEspacial {
 	load(object) {
 
 		const loader = new GLTFLoader();
-
-
+		
 		loader.load(
 			// resource URL
 			'models/Spaceship.gltf',
 			// called when the resource is loaded
 			function (gltf) {
-
-
+				
+				
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
-
-
-				// model = glb.scene.children[0];
-				// console.log(model);
-				// scene.add( model );
-				// model = glb.scene.children[12];
-				// this.scene.add = (this.model)
-
-				// scene.add( gltf.scene );
-
+				object.model.position.z = 700;
+				
 				gltf.animations; // Array<THREE.AnimationClip>
 				gltf.scene; // THREE.Group
 				gltf.scenes; // Array<THREE.Group>
 				gltf.cameras; // Array<THREE.Camera>
 				gltf.asset; // Object
-
+				
 			},
 			// called while loading is progressing
 			function (xhr) {
-
+				
 				//console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-
+				
 			},
 			// called when loading has errors
+			function(){
+				
+			},
 			function (error) {
-
+				
 				console.log('An error happened');
 				console.log(error);
 
-
+				
 			}
-
+			
 		);
+
 	}
 	move() {
 		if (this.model) {
@@ -85,41 +80,23 @@ class Sun {
 		const loader = new GLTFLoader();
 
 		loader.load(
-			// resource URL
 			'models/Sun.gltf',
-			// called when the resource is loaded
-			function (gltf) {
+			(gltf) => {
+				this.model = gltf.scene.children[0];
+				scene.add(this.model);
 
-
-				scene.add(gltf.scene);
-				object.model = gltf.scene.children[0];
-
+				
 				const light = new THREE.PointLight(0xf2de24, 1000000, 1000000000);
 				object.light = light;
 				object.model.add(light);
-
-				gltf.animations; // Array<THREE.AnimationClip>
-				gltf.scene; // THREE.Group
-				gltf.scenes; // Array<THREE.Group>
-				gltf.cameras; // Array<THREE.Camera>
-				gltf.asset; // Object
-
 			},
-			// called while loading is progressing
-			function (xhr) {
-
-				//console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-
+			(xhr) => {
+				////console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 			},
-			// called when loading has errors
-			function (error) {
-
+			(error) => {
 				console.log('An error happened');
-				console.log(error);
-
-
+				console.error(error);
 			}
-
 		);
 	}
 
@@ -128,9 +105,22 @@ class Sun {
 	move() {
 		
 		if (this.vida <= 0) {
-			scene.remove(this.model);
-			// new blackHole();
+			if (this.model) {
+			scene.remove(venus.model)
+			scene.remove(mercurio.model)
+			scene.remove(terra.model)
+			scene.remove(marte.model)
+			scene.remove(jupiter.model)
+			scene.remove(saturno.model)
+			scene.remove(urano.model)
+			scene.remove(netuno.model)
+			scene.remove(plutao.model)
+			scene.remove(this.model)
+			//let buraco = new blackHole();
+			}
+			
 		}
+
 
 		if (this.model) {
 
@@ -307,7 +297,7 @@ class Missil {
 }
 
 let nave = new NaveEspacial();
-let sol = new Sun(5);
+let sol = new Sun(50);
 let venus = new Planet('models/Venus.gltf', 200, 0.001, 20);
 let mercurio = new Planet('models/Mercury.gltf', 150, 0.002, 20);
 let terra = new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20);
@@ -349,7 +339,6 @@ let missiles = [];
 
 if (nave.model) {
 	nave.rotation.y = Math.PI;
-	nave.model.position.z = 800;
 }
 
 function animate() {
