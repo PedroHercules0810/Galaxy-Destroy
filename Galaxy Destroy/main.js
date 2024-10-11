@@ -265,6 +265,7 @@ class Planet {
 	}
 }
 
+//onde o missil foi "criado"
 class Missil {
 	constructor() {
 		this.model = null;
@@ -325,7 +326,7 @@ let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
 let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
 
 
-
+//função para a colisão
 function checkCollision(missil, planeta) {
 	if (missil && planeta) {
 		if (missil.model.position.distanceTo(planeta.model.position) <= 10 || missil.model.position.distanceTo(planeta.model.position) == 0) {
@@ -359,6 +360,7 @@ if (nave.model) {
 	nave.rotation.y = Math.PI;
 }
 
+//bassicamente aqui é o animate onde tudo vai se mover, planetas, sol e nave
 function animate() {
 	renderer.render(scene, camera);
 	
@@ -414,6 +416,7 @@ function animate() {
 	
 	// console.log(sol.vida);
 
+	//função responsável por destruir os planetas e o sol
 	for (let i = 0; i < missiles.length; i++) {
 		missiles[i].move();
 		if (missiles[i].model) {
