@@ -479,6 +479,13 @@ function animate() {
 				break;
 			}
 
+			if (checkCollision(missiles[i], venus)) {
+				venus.vida -= missiles[i].dano;
+				missiles[i].destroy();
+				missiles.splice(i);
+				break;
+			}
+
 			else if (missiles[i].model.position.z <= -500) {
 				console.log('sai');
 				missiles[i].destroy();
