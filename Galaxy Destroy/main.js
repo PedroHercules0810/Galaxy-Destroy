@@ -76,7 +76,7 @@ class Sun {
 				scene.add(this.model);
 
 				//criação da luz saindo direntamente de dentro do sol
-				const light = new THREE.PointLight(0xf2de24, 1000000, 1000000000);
+				const light = new THREE.PointLight(0xf2de24, 100000000, 100000000000);
 				object.light = light;
 				object.model.add(light);
 			},
@@ -294,7 +294,7 @@ function checkCollision(missil, planeta) {
 }
 
 //só pra ter luz
-let light2 = new THREE.AmbientLight(0xffffff, .1);
+let light2 = new THREE.AmbientLight(0xffffff, .5 );
 scene.add(light2);
 //plano de fundo
 const textuLoader = new THREE.TextureLoader();
