@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -9,9 +8,11 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+//funções de controle do buraco negro
 let superNova = false;
 let blackholeExists = false;
 
+//classe da nave
 class NaveEspacial {
 	constructor() {
 		this.model = null;
@@ -23,9 +24,9 @@ class NaveEspacial {
 		const loader = new GLTFLoader();
 		
 		loader.load(
-			// resource URL
+			
 			'models/Spaceship.gltf',
-			// called when the resource is loaded
+			
 			function (gltf) {
 				
 				
@@ -33,23 +34,8 @@ class NaveEspacial {
 				object.model = gltf.scene.children[0];
 				object.model.position.z = 700;
 				
-				gltf.animations; // Array<THREE.AnimationClip>
-				gltf.scene; // THREE.Group
-				gltf.scenes; // Array<THREE.Group>
-				gltf.cameras; // Array<THREE.Camera>
-				gltf.asset; // Object
-				
 			},
-			// called while loading is progressing
-			function (xhr) {
-				
-				//console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-				
-			},
-			// called when loading has errors
-			function(){
-				
-			},
+			
 			function (error) {
 				
 				console.log('An error happened');
@@ -61,14 +47,15 @@ class NaveEspacial {
 		);
 
 	}
+	//mudar escala da nave para 1% do seu tamanho
 	move() {
 		if (this.model) {
-			// this.model.rotation.y = Math.PI;
 			this.model.scale.set(.01, .01, .01)
 		}
 	}
 }
 
+//classe do sol
 class Sun {
 	constructor(vida) {
 		this.model = null;
@@ -88,13 +75,10 @@ class Sun {
 				this.model = gltf.scene.children[0];
 				scene.add(this.model);
 
-				
+				//criação da luz saindo direntamente de dentro do sol
 				const light = new THREE.PointLight(0xf2de24, 1000000, 1000000000);
 				object.light = light;
 				object.model.add(light);
-			},
-			(xhr) => {
-				////console.log((xhr.loaded / xhr.total * 100) + '% loaded');
 			},
 			(error) => {
 				console.log('An error happened');
@@ -102,7 +86,7 @@ class Sun {
 			}
 		);
 	}
-
+	//função para remover os planetas quando o sol for destruido primeiro
 	move() {
 		if (this.vida == 0) {
 			if (this.model ) {
@@ -116,7 +100,7 @@ class Sun {
 				scene.remove(netuno.model)
 				scene.remove(plutao.model)
 				scene.remove(this.model)
-				superNova = true;
+				superNova = true; //aqui é onde vai definir se vai ou não acontecer a supernova
 			}
 			
 		}
@@ -124,20 +108,19 @@ class Sun {
 
 		if (this.model) {
 
-			this.model.rotation.y += 0.01; // Rotate the Sun (optional)
-			this.model.scale.set(50, 50, 50)
-			// this.model.position.z = 0
+			this.model.rotation.y += 0.01; // Rotação do sol
+			this.model.scale.set(50, 50, 50)// aumentando 50 vezes a escala do sol
 		}
 
 	}
 }
-
+//classe do buraco negro
 class blackHole {
 	constructor() {
 		this.model = null;
 		this.load(this);
-		this.tamanho = 5;
-		this.tamanhoMax = 20;
+		this.tamanho = 5;//tamanho atual do buraco negro
+		this.tamanhoMax = 20;//tamanho maximo do buraco negro
 		blackholeExists = true;
 	}
 
@@ -146,42 +129,19 @@ class blackHole {
 		const loader = new GLTFLoader();
 
 		loader.load(
-			// resource URL
+			
 			'models/Black hole.gltf',
-			// called when the resource is loaded
+			
 			function (gltf) {
 
 
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
-
+				//criando a luz que vai sair diretamente de dentro do buraco negro
 				const light = new THREE.PointLight(0x450463, 100000000, 1000000000000);
 				object.light = light;
 				object.model.add(light);
-
-
-				// model = glb.scene.children[0];
-				// console.log(model);
-				// scene.add( model );
-				// model = glb.scene.children[12];
-				// this.scene.add = (this.model)
-
-				// scene.add( gltf.scene );
-
-				gltf.animations; // Array<THREE.AnimationClip>
-				gltf.scene; // THREE.Group
-				gltf.scenes; // Array<THREE.Group>
-				gltf.cameras; // Array<THREE.Camera>
-				gltf.asset; // Object
-
 			},
-			// called while loading is progressing
-			function (xhr) {
-
-				//console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-
-			},
-			// called when loading has errors
 			function (error) {
 
 				console.log('An error happened');
@@ -193,7 +153,7 @@ class blackHole {
 		);
 	}
 	move() {
-
+		//condição onde faz o buraco negro ficar grande
 		if (this.model) {
 			if (this.tamanho < this.tamanhoMax) {
 				
@@ -202,17 +162,16 @@ class blackHole {
 				this.tamanho = this.tamanhoMax;
 			}
 
-			this.model.rotation.y -= 0.01; // Rotate the Sun (optional)
+			this.model.rotation.y -= 0.01; // Rotação do buraco negro
 			
 				this.model.scale.set(this.tamanho, this.tamanho, this.tamanho)
 			
-			// this.model.position.z = -400
 			this.model.position.y = -100
 		}
 
 	}
 }
-
+//classe generica dos planetas
 class Planet {
 	constructor(modelPath, orbitRadius, orbitSpeed, vida) {
 		this.model = null;
@@ -236,9 +195,6 @@ class Planet {
 
 				this.model.material = material;
 			},
-			(xhr) => {
-				////console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-			},
 			(error) => {
 				console.log('An error happened');
 				console.error(error);
@@ -257,7 +213,7 @@ class Planet {
 			this.model.rotation.y += 0.02;
 
 			this.angle += this.orbitSpeed;
-
+			//calculo que faz a orbita dos planetas
 			this.model.position.x = Math.cos(this.angle) + (this.orbitRadius * Math.sin(this.angle));
 			this.model.position.z = Math.sin(this.angle) + (this.orbitRadius * Math.cos(this.angle));
 
@@ -265,7 +221,7 @@ class Planet {
 	}
 }
 
-//onde o missil foi "criado"
+//classe missil
 class Missil {
 	constructor() {
 		this.model = null;
@@ -276,22 +232,21 @@ class Missil {
 
 	load() {
 		const loader = new GLTFLoader();
-		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc }); // Adjust color as needed
+		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc }); 
 
 		loader.load(
 			'models/Missile.gltf',
 			(gltf) => {
 				this.model = gltf.scene.children[0];
 				scene.add(this.model);
+
 				this.model.material = material;
+				//funções que fazem o missil sair de dentro da nave
 				this.model.position.x = nave.model.position.x
 				this.model.position.y = nave.model.position.y
 				this.model.position.z = nave.model.position.z
-				this.model.rotation.y = Math.PI / 2;
-				this.model.scale.set(.3, .3, .3)
-			},
-			(xhr) => {
-				////console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+				this.model.rotation.y = Math.PI / 2;// a que faz ele ficar reto
+				this.model.scale.set(.3, .3, .3)//escala do missil
 			},
 			(error) => {
 				console.log('An error happened');
@@ -299,13 +254,13 @@ class Missil {
 			}
 		);
 	}
-
+	//função que faz o missil ser destruido
 	destroy() {
 		if (this.model) {
 			scene.remove(this.model);
 		}
 	}
-
+	//função que ele se move
 	move() {
 		if (this.model) {
 			this.model.position.z -= 4;
@@ -313,8 +268,9 @@ class Missil {
 	}
 }
 
-let nave = new NaveEspacial();
-let sol = new Sun(5);
+let nave = new NaveEspacial();//inicialização da nave
+let sol = new Sun(50);//inicialização do sol
+//inicialização de todos o planestas, contendo: o caminho do modelo, o raio da orbita, a velocidade da orbita, e a vida
 let venus = new Planet('models/Venus.gltf', 200, 0.001, 20);
 let mercurio = new Planet('models/Mercury.gltf', 150, 0.002, 20);
 let terra = new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20);
@@ -326,7 +282,7 @@ let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
 let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
 
 
-//função para a colisão
+//função para a colisão do missil com os planetas e o sol
 function checkCollision(missil, planeta) {
 	if (missil && planeta) {
 		if (missil.model.position.distanceTo(planeta.model.position) <= 10 || missil.model.position.distanceTo(planeta.model.position) == 0) {
@@ -337,33 +293,33 @@ function checkCollision(missil, planeta) {
 	return false;
 }
 
-
+//só pra ter luz
 let light2 = new THREE.AmbientLight(0xffffff, .1);
 scene.add(light2);
-
+//plano de fundo
 const textuLoader = new THREE.TextureLoader();
 const background = textuLoader.load('models/background.jpg');
 scene.background = background;
-
+//os controles da nave e missil
 let arrowUp = false;
 let arrowDown = false;
 let arrowLeft = false;
 let arrowRight = false;
 let arrowShift = false;
 let arrowCtrl = false;
-let timer = 0;
-let buraco;
 let space = false;
-let missiles = [];
+
+let timer = 0;//timer para disparar o missil
+let buraco;
+let missiles = [];//vetor onde os misseis ficam
 
 if (nave.model) {
-	nave.rotation.y = Math.PI;
+	nave.rotation.y = Math.PI;//nave reta
 }
 
-//bassicamente aqui é o animate onde tudo vai se mover, planetas, sol e nave
 function animate() {
 	renderer.render(scene, camera);
-	
+	//chamando a função move de todos os objetos	
 	nave.move();
 	venus.move();
 	terra.move();
@@ -376,8 +332,8 @@ function animate() {
 	sol.move();
 	mercurio.move();
 
-	timer += 1;
-
+	timer += 1;//timer sendo interado
+	//movimento da nave
 	if (arrowUp) {
 		nave.model.position.y += 1.05;
 	}
@@ -394,27 +350,23 @@ function animate() {
 
 	}
 
-
-
 	if (arrowShift) {
 		nave.model.position.z -= 1.2;
 	}
 	if (arrowCtrl) {
 		nave.model.position.z += 1.2;
 	}
+	//quando a tecla espaço e o timer atingir 200 ou mais o missil é disparado
 	if (space && timer >= 200) {
 		if (nave.model) {
-
+			//o missil é criado
 			let missil = new Missil();
 			console.log('eu');
-
+			//colocando o missil dentro do vetor
 			missiles.push(missil)
-			timer = 0;
+			timer = 0;//zera o timer
 		}
 	}
-
-	
-	// console.log(sol.vida);
 
 	//função responsável por destruir os planetas e o sol
 	for (let i = 0; i < missiles.length; i++) {
@@ -505,22 +457,19 @@ function animate() {
 		}
 
 	}
-
+	//se acontecer uma supernova e não existir buraco negro, ele vai começar a existir
 	if (superNova && !blackholeExists) {
-		superNova = false;
-		buraco = new blackHole();
-		blackholeExists = true;
+		superNova = false;//setando supernova para false
+		buraco = new blackHole();//criando buraco negro
+		blackholeExists = true;//gritando que o buraco negro existe
 	}
+	//chamando a move do buraco negro
 	if (superNova) {
 		buraco.move();
 	}
-	
-	
+	//condição para fazer a camera seguir a nave
 	if (nave.model) {
-
-
 		camera.position.set(nave.model.position.x, nave.model.position.y, nave.model.position.z + .2)
-		camera.rotation.x = .1
 	}
 
 
@@ -530,8 +479,6 @@ renderer.setAnimationLoop(animate);
 document.addEventListener("keydown", onDocumenteKeyDown, false)
 
 function onDocumenteKeyDown(event) {
-	//console.log(event.key);
-	//console.log(event.keyCode);
 	switch (event.key) {
 		case "ArrowUp":
 			arrowUp = true;
