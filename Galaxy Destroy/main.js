@@ -38,8 +38,8 @@ class NaveEspacial {
 			
 			function (error) {
 				
-				console.log('An error happened');
-				console.log(error);
+				// console.log('An error happened');
+				// console.log(error);
 
 				
 			}
@@ -81,8 +81,8 @@ class Sun {
 				object.model.add(light);
 			},
 			(error) => {
-				console.log('An error happened');
-				console.error(error);
+				// console.log('An error happened');
+				// console.error(error);
 			}
 		);
 	}
@@ -196,8 +196,8 @@ class Planet {
 				this.model.material = material;
 			},
 			(error) => {
-				console.log('An error happened');
-				console.error(error);
+				// console.log('An error happened');
+				// console.error(error);
 			}
 		);
 	}
@@ -249,8 +249,8 @@ class Missil {
 				this.model.scale.set(.3, .3, .3)//escala do missil
 			},
 			(error) => {
-				console.log('An error happened');
-				console.error(error);
+				// console.log('An error happened');
+				// console.error(error);
 			}
 		);
 	}
