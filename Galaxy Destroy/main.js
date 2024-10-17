@@ -383,7 +383,7 @@ function animate() {
 						console.log('sai');
 						missiles[i].destroy();
 						missiles.splice(i);
-			
+						break;
 					}
 				}
 			}
