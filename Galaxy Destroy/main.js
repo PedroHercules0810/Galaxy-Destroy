@@ -54,7 +54,66 @@ class NaveEspacial {
 		}
 	}
 }
+//classe generica dos planetas
+class Planet {
+	constructor(modelPath, orbitRadius, orbitSpeed, vida) {
+		this.model = null;
+		this.modelPath = modelPath;
+		this.orbitRadius = orbitRadius;
+		this.orbitSpeed = orbitSpeed;
+		this.angle = 0;
+		this.vida = vida;
+		this.load();
+	}
 
+	load() {
+		const loader = new GLTFLoader();
+		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc });
+
+		loader.load(
+			this.modelPath,
+			(gltf) => {
+				this.model = gltf.scene.children[0];
+				scene.add(this.model);
+
+				this.model.material = material;
+			},
+			(error) => {
+				// console.log('An error happened');
+				// console.error(error);
+			}
+		);
+	}
+
+	move() {
+
+		if (this.vida <= 0) {
+			scene.remove(this.model)
+		}
+
+		if (this.model) {
+			this.model.scale.set(30, 30, 30)
+			this.model.rotation.y += 0.02;
+
+			this.angle += this.orbitSpeed;
+			//calculo que faz a orbita dos planetas
+			this.model.position.x = Math.cos(this.angle) + (this.orbitRadius * Math.sin(this.angle));
+			this.model.position.z = Math.sin(this.angle) + (this.orbitRadius * Math.cos(this.angle));
+
+		}
+	}
+}
+
+let planetas = [new Planet('models/Pluto.gltf', 100, 0.004, 20), 
+	new Planet('models/Mercury.gltf', 150, 0.002, 20),
+	new Planet('models/Venus.gltf', 200, 0.001, 20),
+	new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20),
+	new Planet('models/Mars.gltf', 240, 0.0006, 20),
+	new Planet('models/Jupiter.gltf', 300, 0.0004, 20),
+	new Planet('models/Saturn.gltf', 390, 0.0002, 20),
+	new Planet('models/Uranus.gltf', 500, 0.0004, 20),
+	new Planet('models/Neptune.gltf', 400, 0.0004, 20)
+]
 //classe do sol
 class Sun {
 	constructor(vida) {
@@ -90,15 +149,7 @@ class Sun {
 	move() {
 		if (this.vida == 0) {
 			if (this.model ) {
-				scene.remove(venus.model)
-				scene.remove(mercurio.model)
-				scene.remove(terra.model)
-				scene.remove(marte.model)
-				scene.remove(jupiter.model)
-				scene.remove(saturno.model)
-				scene.remove(urano.model)
-				scene.remove(netuno.model)
-				scene.remove(plutao.model)
+				planetas.forEach(item => {scene.remove(item.model)})
 				scene.remove(this.model)
 				superNova = true; //aqui é onde vai definir se vai ou não acontecer a supernova
 			}
@@ -166,58 +217,9 @@ class blackHole {
 			
 				this.model.scale.set(this.tamanho, this.tamanho, this.tamanho)
 			
-			this.model.position.y = -100
-		}
-
-	}
-}
-//classe generica dos planetas
-class Planet {
-	constructor(modelPath, orbitRadius, orbitSpeed, vida) {
-		this.model = null;
-		this.modelPath = modelPath;
-		this.orbitRadius = orbitRadius;
-		this.orbitSpeed = orbitSpeed;
-		this.angle = 0;
-		this.vida = vida;
-		this.load();
-	}
-
-	load() {
-		const loader = new GLTFLoader();
-		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc });
-
-		loader.load(
-			this.modelPath,
-			(gltf) => {
-				this.model = gltf.scene.children[0];
-				scene.add(this.model);
-
-				this.model.material = material;
-			},
-			(error) => {
-				// console.log('An error happened');
-				// console.error(error);
+				this.model.position.y = -100
 			}
-		);
-	}
-
-	move() {
-
-		if (this.vida <= 0) {
-			scene.remove(this.model)
-		}
-
-		if (this.model) {
-			this.model.scale.set(30, 30, 30)
-			this.model.rotation.y += 0.02;
-
-			this.angle += this.orbitSpeed;
-			//calculo que faz a orbita dos planetas
-			this.model.position.x = Math.cos(this.angle) + (this.orbitRadius * Math.sin(this.angle));
-			this.model.position.z = Math.sin(this.angle) + (this.orbitRadius * Math.cos(this.angle));
-
-		}
+			
 	}
 }
 
@@ -269,17 +271,8 @@ class Missil {
 }
 
 let nave = new NaveEspacial();//inicialização da nave
-let sol = new Sun(50);//inicialização do sol
-//inicialização de todos o planestas, contendo: o caminho do modelo, o raio da orbita, a velocidade da orbita, e a vida
-let venus = new Planet('models/Venus.gltf', 200, 0.001, 20);
-let mercurio = new Planet('models/Mercury.gltf', 150, 0.002, 20);
-let terra = new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20);
-let marte = new Planet('models/Mars.gltf', 240, 0.0006, 20);
-let jupiter = new Planet('models/Jupiter.gltf', 300, 0.0004, 2);
-let saturno = new Planet('models/Saturn.gltf', 390, 0.0002, 20);
-let urano = new Planet('models/Uranus.gltf', 500, 0.0004, 20);
-let netuno = new Planet('models/Neptune.gltf', 400, 0.0004, 20);
-let plutao = new Planet('models/Pluto.gltf', 100, 0.004, 20);
+let sol = new Sun(5);//inicialização do sol
+
 
 
 //função para a colisão do missil com os planetas e o sol
@@ -321,16 +314,12 @@ function animate() {
 	renderer.render(scene, camera);
 	//chamando a função move de todos os objetos	
 	nave.move();
-	venus.move();
-	terra.move();
-	marte.move();
-	jupiter.move();
-	saturno.move();
-	urano.move();
-	netuno.move();
-	plutao.move();
 	sol.move();
-	mercurio.move();
+
+	for (let i = 0; i < planetas.length; i++) {
+		planetas[i].move();
+		
+	}
 
 	timer += 1;//timer sendo interado
 	//movimento da nave
@@ -373,15 +362,6 @@ function animate() {
 		missiles[i].move();
 		if (missiles[i].model) {
 
-			if (checkCollision(missiles[i], jupiter)) {
-				jupiter.vida -= missiles[i].dano;
-				console.log('bati');
-
-				missiles[i].destroy();
-				missiles.splice(i);
-				break;
-			}
-
 			if (checkCollision(missiles[i], sol)) {
 				sol.vida -= missiles[i].dano;
 				console.log('bati');
@@ -390,69 +370,22 @@ function animate() {
 				missiles.splice(i);
 				break;
 			}
-
-			if (checkCollision(missiles[i], netuno)) {
-				netuno.vida -= missiles[i].dano;
-				missiles[i].destroy();
-				missiles.splice(i);
-				break;
-			}
-
-
-			if (checkCollision(missiles[i], urano)) {
-				urano.vida -= missiles[i].dano;
-				missiles[i].destroy();
-				missiles.splice(i);
-				break;
-			}
-
-			if (checkCollision(missiles[i], plutao)) {
-				plutao.vida -= missiles[i].dano;
-				missiles[i].destroy();
-				missiles.splice(i);
-				break;
-			}
-
-			if (checkCollision(missiles[i], terra)) {
-				terra.vida -= missiles[i].dano;
-				missiles[i].destroy();
-				missiles.splice(i);
-				break;
-			}
-
-			if (checkCollision(missiles[i], marte)) {
-				marte.vida -= missiles[i].dano;
-				missiles[i].destroy();
-				missiles.splice(i);
-				break;
-			}
-
-			if (checkCollision(missiles[i], mercurio)) {
-				mercurio.vida -= missiles[i].dano;
-				missiles[i].destroy();
-				missiles.splice(i);
-				break;
-			}
-
-			if (checkCollision(missiles[i], venus)) {
-				venus.vida -= missiles[i].dano;
-				missiles[i].destroy();
-				missiles.splice(i);
-				break;
-			}
-
-			if (checkCollision(missiles[i], saturno)) {
-				saturno.vida -= missiles[i].dano;
-				missiles[i].destroy();
-				missiles.splice(i);
-				break;
-			}
-
-			else if (missiles[i].model.position.z <= -500) {
-				console.log('sai');
-				missiles[i].destroy();
-				missiles.splice(i);
-
+			for (let j = 0; j < planetas.length; j++) {
+				
+				if (planetas[j].model) {
+					
+					if (checkCollision(missiles[i],planetas[j])) {
+						planetas[j].vida -= missiles[i].dano;
+						missiles[i].destroy();
+						missiles.splice(i);
+						break;
+					} else if (missiles[i].model.position.z <= -500) {
+						console.log('sai');
+						missiles[i].destroy();
+						missiles.splice(i);
+			
+					}
+				}
 			}
 		}
 
