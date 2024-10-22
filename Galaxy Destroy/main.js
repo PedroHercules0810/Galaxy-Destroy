@@ -29,22 +29,16 @@ class NaveEspacial {
 
 			function (gltf) {
 
-
-
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
 				object.model.position.z = 700;
 				object.model.rotation.y = Math.PI
-
-
 			},
 
 			function (error) {
 
 			}
-
 		);
-
 	}
 	//mudar escala da nave para 1% do seu tamanho
 	move() {
@@ -98,7 +92,6 @@ class Planet {
 			//calculo que faz a orbita dos planetas
 			this.model.position.x = Math.cos(this.angle) + (this.orbitRadius * Math.sin(this.angle));
 			this.model.position.z = Math.sin(this.angle) + (this.orbitRadius * Math.cos(this.angle));
-
 		}
 	}
 }
@@ -120,9 +113,6 @@ class Sun {
 		this.light = null
 		this.vida = vida;
 		this.load(this);
-
-
-
 	}
 
 	load(object) {
@@ -153,22 +143,15 @@ class Sun {
 				planetas.forEach(item => { scene.remove(item.model) })
 				scene.remove(this.model)
 				superNova = true; //aqui é onde vai definir se vai ou não acontecer a supernova
-
 			}
-
 		}
-
 
 		if (this.model) {
 			this.model.rotation.y += 0.01; // Rotação do sol
 			this.model.scale.set(50, 50, 50)// aumentando 50 vezes a escala do sol
 		}
-
-			}	
-		}
-		
-
-	
+	}
+}
 
 //classe do buraco negro
 class blackHole {
@@ -211,14 +194,12 @@ class blackHole {
 			} else {
 				this.tamanho = this.tamanhoMax;
 			}
-
 			this.model.rotation.y -= 0.01; // Rotação do buraco negro
 
 			this.model.scale.set(this.tamanho, this.tamanho, this.tamanho)
 
 			this.model.position.y = -100
 		}
-
 	}
 }
 
@@ -272,7 +253,6 @@ class Missil {
 let nave = new NaveEspacial();//inicialização da nave
 let sol = new Sun(5);//inicialização do sol
 
-
 //função para a colisão do missil com os planetas e o sol
 function checkCollision(missil, planeta) {
 	if (missil && planeta) {
@@ -312,7 +292,6 @@ function animate() {
 
 	for (let i = 0; i < planetas.length; i++) {
 		planetas[i].move();
-
 	}
 
 	if (nave.model) {
@@ -333,7 +312,6 @@ function animate() {
 			nave.model.rotation.x -= 0.002;
 		}
 		if (arrowDown) {
-
 			nave.model.position.y -= 1.05;
 			if (nave.model.rotation.x > -.2) {
 				nave.model.rotation.x -= 0.002;
@@ -348,17 +326,18 @@ function animate() {
 			if (nave.model.rotation.y > 2.9) {
 				nave.model.rotation.y -= 0.002;
 			}
+		} else if (nave.model.rotation.y < Math.PI){
+			nave.model.rotation.y += 0.002;
 		}
 		if (arrowLeft) {
 			nave.model.position.x -= 1.05;
 			if (nave.model.rotation.y < 3.37) {
 				nave.model.rotation.y += 0.002;
-
 			}
+		} else if (nave.model.rotation.y > Math.PI){
+			nave.model.rotation.y -= 0.002;
 		}
 	}
-
-
 
 	if (arrowShift) {
 		nave.model.position.z -= 1.2;
@@ -485,4 +464,3 @@ function onDocumenteKeyUp(event) {
 	renderer.setAnimationLoop(animate);
 }
 animate();
-
