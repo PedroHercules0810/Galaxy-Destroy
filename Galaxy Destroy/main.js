@@ -251,7 +251,7 @@ class Missil {
 }
 
 let nave = new NaveEspacial();//inicialização da nave
-let sol = new Sun(5);//inicialização do sol
+let sol = new Sun(50);//inicialização do sol
 
 //função para a colisão do missil com os planetas e o sol
 function checkCollision(missil, planeta) {
