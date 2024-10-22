@@ -28,6 +28,7 @@ class NaveEspacial {
 			'models/Spaceship.gltf',
 
 			function (gltf) {
+<<<<<<< HEAD
 
 
 				scene.add(gltf.scene);
@@ -35,14 +36,24 @@ class NaveEspacial {
 				object.model.position.z = 700;
 				object.model.rotation.y = Math.PI
 
+=======
+				scene.add(gltf.scene);
+				object.model = gltf.scene.children[0];
+				object.model.position.z = 700;
+>>>>>>> fbb58c569a9f28d485767e22d6b6aca2737bae8d
 			},
 
 			function (error) {
+<<<<<<< HEAD
 
 				// console.log('An error happened');
 				// console.log(error);
 
 
+=======
+				// console.log('An error happened');
+				// console.log(error);
+>>>>>>> fbb58c569a9f28d485767e22d6b6aca2737bae8d
 			}
 
 		);
@@ -122,7 +133,10 @@ class Sun {
 		this.light = null
 		this.vida = vida;
 		this.load(this);
+<<<<<<< HEAD
 
+=======
+>>>>>>> fbb58c569a9f28d485767e22d6b6aca2737bae8d
 	}
 
 	load(object) {
@@ -153,17 +167,21 @@ class Sun {
 				planetas.forEach(item => { scene.remove(item.model) })
 				scene.remove(this.model)
 				superNova = true; //aqui é onde vai definir se vai ou não acontecer a supernova
+<<<<<<< HEAD
 			}
 
 		}
 
 
+=======
+			}	
+		}
+		
+>>>>>>> fbb58c569a9f28d485767e22d6b6aca2737bae8d
 		if (this.model) {
-
 			this.model.rotation.y += 0.01; // Rotação do sol
 			this.model.scale.set(50, 50, 50)// aumentando 50 vezes a escala do sol
 		}
-
 	}
 }
 //classe do buraco negro
@@ -185,8 +203,6 @@ class blackHole {
 			'models/Black hole.gltf',
 
 			function (gltf) {
-
-
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
 				//criando a luz que vai sair diretamente de dentro do buraco negro
@@ -195,13 +211,9 @@ class blackHole {
 				object.model.add(light);
 			},
 			function (error) {
-
 				console.log('An error happened');
 				console.log(error);
-
-
 			}
-
 		);
 	}
 	move() {
@@ -272,8 +284,7 @@ class Missil {
 }
 
 let nave = new NaveEspacial();//inicialização da nave
-let sol = new Sun(5);//inicialização do sol
-
+let sol = new Sun(50);//inicialização do sol
 
 
 //função para a colisão do missil com os planetas e o sol
@@ -412,7 +423,6 @@ function animate() {
 				}
 			}
 		}
-
 	}
 	//se acontecer uma supernova e não existir buraco negro, ele vai começar a existir
 	if (superNova && !blackholeExists) {
@@ -428,9 +438,8 @@ function animate() {
 	if (nave.model) {
 		camera.position.set(nave.model.position.x, nave.model.position.y, nave.model.position.z + .2)
 	}
-
-
 }
+
 renderer.setAnimationLoop(animate);
 
 document.addEventListener("keydown", onDocumenteKeyDown, false)
@@ -487,7 +496,6 @@ function onDocumenteKeyUp(event) {
 			arrowCtrl = false;
 			break;
 	}
-
 	renderer.setAnimationLoop(animate);
 }
 animate();
