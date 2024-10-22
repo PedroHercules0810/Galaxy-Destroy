@@ -22,28 +22,29 @@ class NaveEspacial {
 	load(object) {
 
 		const loader = new GLTFLoader();
-		
+
 		loader.load(
-			
+
 			'models/Spaceship.gltf',
-			
+
 			function (gltf) {
-				
-				
+
+
 				scene.add(gltf.scene);
 				object.model = gltf.scene.children[0];
 				object.model.position.z = 700;
-				
+				object.model.rotation.y = Math.PI
+
 			},
-			
+
 			function (error) {
-				
+
 				// console.log('An error happened');
 				// console.log(error);
 
-				
+
 			}
-			
+
 		);
 
 	}
@@ -104,15 +105,15 @@ class Planet {
 	}
 }
 
-let planetas = [new Planet('models/Pluto.gltf', 100, 0.004, 20), 
-	new Planet('models/Mercury.gltf', 150, 0.002, 20),
-	new Planet('models/Venus.gltf', 200, 0.001, 20),
-	new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20),
-	new Planet('models/Mars.gltf', 240, 0.0006, 20),
-	new Planet('models/Jupiter.gltf', 300, 0.0004, 20),
-	new Planet('models/Saturn.gltf', 390, 0.0002, 20),
-	new Planet('models/Uranus.gltf', 500, 0.0004, 20),
-	new Planet('models/Neptune.gltf', 400, 0.0004, 20)
+let planetas = [new Planet('models/Pluto.gltf', 100, 0.004, 20),
+new Planet('models/Mercury.gltf', 150, 0.002, 20),
+new Planet('models/Venus.gltf', 200, 0.001, 20),
+new Planet('models/Earth and Moon.gltf', 220, 0.0005, 20),
+new Planet('models/Mars.gltf', 240, 0.0006, 20),
+new Planet('models/Jupiter.gltf', 300, 0.0004, 20),
+new Planet('models/Saturn.gltf', 390, 0.0002, 20),
+new Planet('models/Uranus.gltf', 500, 0.0004, 20),
+new Planet('models/Neptune.gltf', 400, 0.0004, 20)
 ]
 //classe do sol
 class Sun {
@@ -121,7 +122,7 @@ class Sun {
 		this.light = null
 		this.vida = vida;
 		this.load(this);
-	
+
 	}
 
 	load(object) {
@@ -148,14 +149,14 @@ class Sun {
 	//função para remover os planetas quando o sol for destruido primeiro
 	move() {
 		if (this.vida == 0) {
-			if (this.model ) {
-				planetas.forEach(item => {scene.remove(item.model)})
+			if (this.model) {
+				planetas.forEach(item => { scene.remove(item.model) })
 				scene.remove(this.model)
 				superNova = true; //aqui é onde vai definir se vai ou não acontecer a supernova
 			}
-			
+
 		}
-		
+
 
 		if (this.model) {
 
@@ -180,9 +181,9 @@ class blackHole {
 		const loader = new GLTFLoader();
 
 		loader.load(
-			
+
 			'models/Black hole.gltf',
-			
+
 			function (gltf) {
 
 
@@ -207,19 +208,19 @@ class blackHole {
 		//condição onde faz o buraco negro ficar grande
 		if (this.model) {
 			if (this.tamanho < this.tamanhoMax) {
-				
+
 				this.tamanho += .05;
-			}else{
+			} else {
 				this.tamanho = this.tamanhoMax;
 			}
 
 			this.model.rotation.y -= 0.01; // Rotação do buraco negro
-			
-				this.model.scale.set(this.tamanho, this.tamanho, this.tamanho)
-			
-				this.model.position.y = -100
-			}
-			
+
+			this.model.scale.set(this.tamanho, this.tamanho, this.tamanho)
+
+			this.model.position.y = -100
+		}
+
 	}
 }
 
@@ -234,7 +235,7 @@ class Missil {
 
 	load() {
 		const loader = new GLTFLoader();
-		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc }); 
+		const material = new THREE.MeshPhongMaterial({ color: 0xcccccc });
 
 		loader.load(
 			'models/Missile.gltf',
@@ -287,7 +288,7 @@ function checkCollision(missil, planeta) {
 }
 
 //só pra ter luz
-let light2 = new THREE.AmbientLight(0xffffff, .5 );
+let light2 = new THREE.AmbientLight(0xffffff, .5);
 scene.add(light2);
 //plano de fundo
 const textuLoader = new THREE.TextureLoader();
@@ -306,10 +307,6 @@ let timer = 0;//timer para disparar o missil
 let buraco;
 let missiles = [];//vetor onde os misseis ficam
 
-if (nave.model) {
-	nave.rotation.y = Math.PI;//nave reta
-}
-
 function animate() {
 	renderer.render(scene, camera);
 	//chamando a função move de todos os objetos	
@@ -318,26 +315,53 @@ function animate() {
 
 	for (let i = 0; i < planetas.length; i++) {
 		planetas[i].move();
-		
+
+	}
+
+	if (nave.model) {
+		console.log(nave.model.rotation.x);
+		console.log(nave.model.rotation.y);
 	}
 
 	timer += 1;//timer sendo interado
 	//movimento da nave
-	if (arrowUp) {
-		nave.model.position.y += 1.05;
-	}
-	if (arrowDown) {
+	if (nave.model) {
 
-		nave.model.position.y -= 1.05;
-	}
-	if (arrowRight) {
-		nave.model.position.x += 1.05;
+		if (arrowUp) {
+			nave.model.position.y += 1.05;
+			if (nave.model.rotation.x < .2) {
+				nave.model.rotation.x += 0.002;
+			}
+		} else if (nave.model.rotation.x > 0) {
+			nave.model.rotation.x -= 0.002;
+		}
+		if (arrowDown) {
 
-	}
-	if (arrowLeft) {
-		nave.model.position.x -= 1.05;
+			nave.model.position.y -= 1.05;
+			if (nave.model.rotation.x > -.2) {
+				nave.model.rotation.x -= 0.002;
+			}
+		} else if (nave.model.rotation.x < 0) {
+			nave.model.rotation.x += 0.002;
+		}
 
+
+		if (arrowRight) {
+			nave.model.position.x += 1.05;
+			if (nave.model.rotation.y > 2.9) {
+				nave.model.rotation.y -= 0.002;
+			}
+		}
+		if (arrowLeft) {
+			nave.model.position.x -= 1.05;
+			if (nave.model.rotation.y < 3.37) {
+				nave.model.rotation.y += 0.002;
+
+			}
+		}
 	}
+
+
 
 	if (arrowShift) {
 		nave.model.position.z -= 1.2;
@@ -365,16 +389,16 @@ function animate() {
 			if (checkCollision(missiles[i], sol)) {
 				sol.vida -= missiles[i].dano;
 				console.log('bati');
-				
+
 				missiles[i].destroy();
 				missiles.splice(i);
 				break;
 			}
 			for (let j = 0; j < planetas.length; j++) {
-				
+
 				if (planetas[j].model) {
-					
-					if (checkCollision(missiles[i],planetas[j])) {
+
+					if (checkCollision(missiles[i], planetas[j])) {
 						planetas[j].vida -= missiles[i].dano;
 						missiles[i].destroy();
 						missiles.splice(i);
